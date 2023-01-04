@@ -1,6 +1,5 @@
 ﻿using ServerING.Interfaces;
 using ServerING.Models;
-using ServerING.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +35,7 @@ namespace ServerING.Services {
         FavoriteServerBL DeleteFavoriteServer(int userId, int serverId);
         FavoriteServerBL GetFavoriteByServerAndUserId(int userId, int serverId);
 
-        UsersViewModel ParseUsers(IEnumerable<User> parsedUsers, string login, int page, UserSortState sortOrder);
-        User ValidateUser(LoginViewModel model);
+        // UsersViewModel ParseUsers(IEnumerable<User> parsedUsers, string login, int page, UserSortState sortOrder);
     }
 
     public class UserService : IUserService {
@@ -187,85 +185,72 @@ namespace ServerING.Services {
             return mapper.Map<FavoriteServerBL>(favoriteServer);
         }
 
-        public UsersViewModel ParseUsers(IEnumerable<User> parsedServers, string login, int page, ServerSortState sortOrder) {
-            throw new NotImplementedException();
-        }
+        // public UsersViewModel ParseUsers(IEnumerable<User> parsedServers, string login, int page, ServerSortState sortOrder) {
+        //     throw new NotImplementedException();
+        // }
 
-        private IEnumerable<User> FilterUsersByName(IEnumerable<User> users, string login) {
+        // private IEnumerable<User> FilterUsersByName(IEnumerable<User> users, string login) {
 
-            var filteredUsers = users;
+        //     var filteredUsers = users;
 
-            if (!String.IsNullOrEmpty(login)) {
-                filteredUsers = filteredUsers.Where(p => p.Login.Contains(login));
-            }
+        //     if (!String.IsNullOrEmpty(login)) {
+        //         filteredUsers = filteredUsers.Where(p => p.Login.Contains(login));
+        //     }
 
-            return filteredUsers;
-        }
+        //     return filteredUsers;
+        // }
 
-        private IEnumerable<User> SortUsersByOption(IEnumerable<User> users, UserSortState sortOrder) {
+        // private IEnumerable<User> SortUsersByOption(IEnumerable<User> users, UserSortState sortOrder) {
 
-            IEnumerable<User> filteredUsers;
+        //     IEnumerable<User> filteredUsers;
 
-            if (sortOrder == UserSortState.LoginDesc) {
-                filteredUsers = users.OrderByDescending(s => s.Login);
-            }
-            else if (sortOrder == UserSortState.RoleAsc) {
-                filteredUsers = users.OrderBy(s => s.Role);
-            }
-            else if (sortOrder == UserSortState.RoleDesc) {
-                filteredUsers = users.OrderByDescending(s => s.Role);
-            }
-            else {
-                filteredUsers = users.OrderBy(s => s.Login);
-            }
+        //     if (sortOrder == UserSortState.LoginDesc) {
+        //         filteredUsers = users.OrderByDescending(s => s.Login);
+        //     }
+        //     else if (sortOrder == UserSortState.RoleAsc) {
+        //         filteredUsers = users.OrderBy(s => s.Role);
+        //     }
+        //     else if (sortOrder == UserSortState.RoleDesc) {
+        //         filteredUsers = users.OrderByDescending(s => s.Role);
+        //     }
+        //     else {
+        //         filteredUsers = users.OrderBy(s => s.Login);
+        //     }
 
-            return filteredUsers;
-        }
+        //     return filteredUsers;
+        // }
 
-        private IEnumerable<User> PaginationUsers(IEnumerable<User> users, int page, int pageSize) {
+        // private IEnumerable<User> PaginationUsers(IEnumerable<User> users, int page, int pageSize) {
 
-            var paginatedServers = users.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        //     var paginatedServers = users.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-            return paginatedServers;
-        }
+        //     return paginatedServers;
+        // }
 
-        public UsersViewModel ParseUsers(IEnumerable<User> parsedUsers, string login, int page, UserSortState sortOrder) {
+        // public UsersViewModel ParseUsers(IEnumerable<User> parsedUsers, string login, int page, UserSortState sortOrder) {
 
-            // Параметры пагинации 
-            int pageSize = 3;
-            var count = parsedUsers.Count();
+        //     // Параметры пагинации 
+        //     int pageSize = 3;
+        //     var count = parsedUsers.Count();
 
-            // фильтрация
-            parsedUsers = FilterUsersByName(parsedUsers, login);
+        //     // фильтрация
+        //     parsedUsers = FilterUsersByName(parsedUsers, login);
 
-            // сортировка
-            parsedUsers = SortUsersByOption(parsedUsers, sortOrder);
+        //     // сортировка
+        //     parsedUsers = SortUsersByOption(parsedUsers, sortOrder);
 
-            // пагинация
-            parsedUsers = PaginationUsers(parsedUsers, page, pageSize);
+        //     // пагинация
+        //     parsedUsers = PaginationUsers(parsedUsers, page, pageSize);
 
-            // Вывод - формируем модель представления
-            UsersViewModel viewModel = new UsersViewModel {
-                PageViewModel = new PageViewModel(count, page, pageSize),
-                //SortUserViewModel = new SortUserViewModel(sortOrder),
-                FilterUserViewModel = new FilterUserViewModel(login),
-                Users = parsedUsers.ToList()
-            };
+        //     // Вывод - формируем модель представления
+        //     UsersViewModel viewModel = new UsersViewModel {
+        //         PageViewModel = new PageViewModel(count, page, pageSize),
+        //         //SortUserViewModel = new SortUserViewModel(sortOrder),
+        //         FilterUserViewModel = new FilterUserViewModel(login),
+        //         Users = parsedUsers.ToList()
+        //     };
 
-            return viewModel;
-        }
-
-        public User ValidateUser(LoginViewModel model) {
-
-            User user = userRepository.GetByLogin(model.Login);
-
-            if (user != null) {
-                if (user.Password == model.Password) {
-                    return user;
-                }
-            }
-
-            return null;
-        }
+        //     return viewModel;
+        // }
     }
 }
