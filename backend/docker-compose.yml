@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=amunra23
+      - POSTGRES_DB=web_db
+
+  pgadmin:
+    depends_on:
+      - "postgres"
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      # пробрасываем папку static в папку hmtl в контейнере
+      - ../docs/static:/usr/share/nginx/html
+      # пробрасываем конфиг
+      - ../docs/nginx/nginx.conf:/etc/nginx/nginx.conf
+      # пробрасываем логи
+      - ../docs/nginx/logs:/var/log/nginx
+    ports:
+      # на маке 8080 в контейнере 80 порт
+      - "8080:80"
+    # links:
+    #   - backend_1
+    #   # - backend_4
+    #   - backend_5
+    #   # - backend_2
+    #   # - backend_3
