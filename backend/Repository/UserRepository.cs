@@ -82,7 +82,6 @@ namespace ServerING.Repository {
         }
 
         public IEnumerable<Server> GetFavoriteServersByUserId(int id) {
-
             var favServs = appDBContent.FavoriteServer
                 .Where(x => x.UserID == id)
                 .Select(x => x.ServerID).ToList();
@@ -107,7 +106,6 @@ namespace ServerING.Repository {
         }
 
         public FavoriteServer DeleteFavoriteServer(int id) {
-
             try {
                 FavoriteServer favoriteServer = appDBContent.FavoriteServer.Find(id);
 

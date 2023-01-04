@@ -4,7 +4,6 @@ using ServerING.Exceptions;
 using ServerING.Interfaces;
 using ServerING.Models;
 using ServerING.ModelsBL;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,8 +18,6 @@ namespace ServerING.Services {
         IEnumerable<WebHostingBL> GetAllHostings();
 
         WebHostingBL GetHostingByName(string name);
-        IEnumerable<WebHostingBL> GetHostingByPricePerMonth(int pricePerMonth);
-        IEnumerable<WebHostingBL> GetHostingBySubMonths(ushort subMonths);
     }
 
 
@@ -76,16 +73,6 @@ namespace ServerING.Services {
 
         public WebHostingBL GetHostingByID(int id) {
             return mapper.Map<WebHostingBL>(hostingRepository.GetByID(id));
-        }
-
-        public IEnumerable<WebHostingBL> GetHostingByPricePerMonth(int pricePerMonth) {
-            return mapper
-                .Map<IEnumerable<WebHostingBL>>(hostingRepository.GetByPricePerMonth(pricePerMonth));
-        }
-
-        public IEnumerable<WebHostingBL> GetHostingBySubMonths(ushort subMonths) {
-            return mapper
-                .Map<IEnumerable<WebHostingBL>>(hostingRepository.GetBySubMonths(subMonths));
         }
 
         public WebHostingBL GetHostingByName(string name) {

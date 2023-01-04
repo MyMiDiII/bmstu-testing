@@ -88,17 +88,6 @@ namespace ServerING.Repository {
                 .FirstOrDefault(s => s.Id == id);
         }
 
-        public IEnumerable<Server> GetByGameName(string gameName) {
-            return appDBContent
-                .Server
-                .Include(s => s.Country)
-                .Include(s => s.Platform)
-                .Include(s => s.Hosting)
-                .Include(s => s.Owner)
-                .Where(s => s.GameName == gameName)
-                .ToList();
-        }
-
         public Server GetByIP(string ip) {
             return appDBContent
                 .Server
@@ -119,27 +108,6 @@ namespace ServerING.Repository {
                 .FirstOrDefault(s => s.Name == name);
         }
 
-        public IEnumerable<Server> GetByPlatformID(int id) {
-            return appDBContent
-                .Server
-                .Include(s => s.Country)
-                .Include(s => s.Platform)
-                .Include(s => s.Hosting)
-                .Include(s => s.Owner)
-                .Where(s => s.PlatformID == id)
-                .ToList();
-        }
-
-        public IEnumerable<Server> GetByWebHostingID(int id) {
-            return appDBContent
-                .Server
-                .Include(s => s.Country)
-                .Include(s => s.Platform)
-                .Include(s => s.Hosting)
-                .Include(s => s.Owner)
-                .Where(s => s.HostingID == id).ToList();
-        }
-
         public IEnumerable<Player> GetPlayersByServerID(int id) {
             Server server = appDBContent
                 .Server
@@ -151,56 +119,9 @@ namespace ServerING.Repository {
 
             if (server != null) {
                 var playersOnServerIds = appDBContent.ServerPlayer.Where(x => x.ServerID == id).Select(x => x.PlayerID).ToList();
-
                 IEnumerable<Player> players = appDBContent.Player.Where(x => playersOnServerIds.Contains(x.Id)).ToList();
 
                 return players;
-            }
-
-            return null;
-        }
-
-        public WebHosting GetWebHostingByServerId(int id) {
-
-            if (id > 0) {
-                Server server = appDBContent
-                    .Server
-                    .Include(s => s.Country)
-                    .Include(s => s.Platform)
-                    .Include(s => s.Hosting)
-                    .Include(s => s.Owner)
-                    .FirstOrDefault(s => s.Id == id);
-
-                if (server != null) {
-                    return appDBContent.WebHosting.FirstOrDefault(w => w.Id == server.HostingID);
-                }
-            }
-
-            return null;
-        }
-
-        public IEnumerable<Server> GetByRating(int rating) {
-            return appDBContent
-                .Server
-                .Include(s => s.Country)
-                .Include(s => s.Platform)
-                .Include(s => s.Hosting)
-                .Include(s => s.Owner)
-                .Where(x => x.Rating == rating)
-                .ToList();
-        }
-
-        public IEnumerable<FavoriteServer> GetByUserID(int id) {
-            return appDBContent.FavoriteServer.Where(fs => fs.UserID == id).ToList();
-        }
-
-        public Country GetCountryByServerId(int id) {
-            if (id > 0) {
-                Server server = appDBContent.Server.FirstOrDefault(s => s.Id == id);
-
-                if (server != null) {
-                    return appDBContent.Country.FirstOrDefault(c => c.Id == server.CountryID);
-                }
             }
 
             return null;

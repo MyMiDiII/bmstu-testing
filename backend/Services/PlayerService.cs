@@ -19,8 +19,6 @@ namespace ServerING.Services {
         IEnumerable<PlayerBL> GetAllPlayers();
 
         PlayerBL GetPlayerByNickname(string nickname);
-        IEnumerable<PlayerBL> GetPlayersByHoursPlayed(int hoursPlayed);
-        IEnumerable<PlayerBL> GetPlayersByLastPlayed(DateTime lastPlayed);
     }
 
 
@@ -67,14 +65,6 @@ namespace ServerING.Services {
 
         public PlayerBL GetPlayerByNickname(string nickname) {
             return mapper.Map<PlayerBL>(playerRepository.GetByNickname(nickname));
-        }
-
-        public IEnumerable<PlayerBL> GetPlayersByHoursPlayed(int hoursPlayed) {
-            return mapper.Map<IEnumerable<PlayerBL>>(playerRepository.GetByHoursPlayed(hoursPlayed));
-        }
-
-        public IEnumerable<PlayerBL> GetPlayersByLastPlayed(DateTime lastPlayed) {
-            return mapper.Map<IEnumerable<PlayerBL>>(playerRepository.GetByLastPlayed(lastPlayed));
         }
 
         public PlayerBL UpdatePlayer(int id, PlayerBL player) {
