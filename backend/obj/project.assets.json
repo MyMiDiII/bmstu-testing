@@ -10687,19 +10687,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/amunra23/.nuget/packages/": {}
+    "/home/mymidi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/amunra23/study/sem7/testing/testing_github/backend/ServerING.csproj",
+      "projectUniqueName": "/home/mymidi/Desktop/BMSTU/bmstu-testing/backend/ServerING.csproj",
       "projectName": "ServerING",
-      "projectPath": "/Users/amunra23/study/sem7/testing/testing_github/backend/ServerING.csproj",
-      "packagesPath": "/Users/amunra23/.nuget/packages/",
-      "outputPath": "/Users/amunra23/study/sem7/testing/testing_github/backend/obj/",
+      "projectPath": "/home/mymidi/Desktop/BMSTU/bmstu-testing/backend/ServerING.csproj",
+      "packagesPath": "/home/mymidi/.nuget/packages/",
+      "outputPath": "/home/mymidi/Desktop/BMSTU/bmstu-testing/backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/amunra23/.nuget/NuGet/NuGet.Config"
+        "/home/mymidi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -10783,6 +10783,16 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.12, 6.0.12]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[6.0.12, 6.0.12]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -10791,7 +10801,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.403/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
       }
     }
   }
