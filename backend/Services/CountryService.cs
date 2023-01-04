@@ -18,8 +18,6 @@ namespace ServerING.Services {
         IEnumerable<CountryBL> GetAllCountries();
 
         CountryBL GetCountryByName(string name);
-        IEnumerable<CountryBL> GetCountryByOverallPlayers(ushort overallPlayers);
-        IEnumerable<CountryBL> GetCountryByLevelOfInterest(int levelOfIntereset);
     }
 
     public class CountryService : ICountryService {
@@ -74,16 +72,6 @@ namespace ServerING.Services {
 
         public CountryBL GetCountryByName(string name) {
             return mapper.Map<CountryBL>(countryRepository.GetByName(name));
-        }
-
-        public IEnumerable<CountryBL> GetCountryByOverallPlayers(ushort overallPlayers) {
-            return mapper
-                .Map<IEnumerable<CountryBL>>(countryRepository.GetByOverallPlayers(overallPlayers));
-        }
-
-        public IEnumerable<CountryBL> GetCountryByLevelOfInterest(int levelOfInterest) {
-            return mapper
-                .Map<IEnumerable<CountryBL>>(countryRepository.GetByLevelOfInterest(levelOfInterest));
         }
     }
 }

@@ -73,14 +73,6 @@ namespace ServerING.Repository {
             return appDBContent.Player.Find(id);
         }
 
-        public IEnumerable<Player> GetByHoursPlayed(int hoursPlayed) {
-            return appDBContent.Player.Where(p => p.HoursPlayed == hoursPlayed).ToList();
-        }
-
-        public IEnumerable<Player> GetByLastPlayed(DateTime lastPlayed) {
-            return appDBContent.Player.Where(p => p.LastPlayed == lastPlayed).ToList();
-        }
-
         public Player GetByNickname(string nickname) {
             return appDBContent.Player.FirstOrDefault(p => p.Nickname == nickname);
         }

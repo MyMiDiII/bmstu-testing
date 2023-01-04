@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace ServerING.Interfaces {
     public interface IUserRepository : IRepository<User> {
-
         User GetByLogin(string login);
         IEnumerable<User> GetByRole(string role);
 

@@ -4,7 +4,6 @@ using ServerING.Exceptions;
 using ServerING.Interfaces;
 using ServerING.Models;
 using ServerING.ModelsBL;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,8 +18,6 @@ namespace ServerING.Services {
         IEnumerable<PlatformBL> GetAllPlatforms();
 
         PlatformBL GetPlatformByName(string name);
-        IEnumerable<PlatformBL> GetPlatformByPopularity(ushort popularity);
-        IEnumerable<PlatformBL> GetPlatformByCost(int cost);
     }
 
     public class PlatformService : IPlatformService {
@@ -84,14 +81,6 @@ namespace ServerING.Services {
 
         public PlatformBL GetPlatformByName(string name) {
             return mapper.Map<PlatformBL>(platformRepository.GetByName(name));
-        }
-
-        public IEnumerable<PlatformBL> GetPlatformByPopularity(ushort popularity) {
-            return mapper.Map<IEnumerable<PlatformBL>>(platformRepository.GetByPopularity(popularity));
-        }
-
-        public IEnumerable<PlatformBL> GetPlatformByCost(int cost) {
-            return mapper.Map<IEnumerable<PlatformBL>>(platformRepository.GetByCost(cost));
         }
     }
 }

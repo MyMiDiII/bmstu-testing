@@ -56,16 +56,8 @@ namespace ServerING.Repository {
             return appDBContent.Country.Find(id);
         }
 
-        public IEnumerable<Country> GetByLevelOfInterest(int levelOfInterest) {
-            return appDBContent.Country.Where(c => c.LevelOfInterest == levelOfInterest).ToList();
-        }
-
         public Country GetByName(string name) {
             return appDBContent.Country.FirstOrDefault(c => c.Name == name);
-        }
-
-        public IEnumerable<Country> GetByOverallPlayers(int overallPlayers) {
-            return appDBContent.Country.Where(c => c.OverallPlayers == overallPlayers).ToList();
         }
 
         public Country Update(Country country) {

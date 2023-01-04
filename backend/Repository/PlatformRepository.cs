@@ -67,20 +67,12 @@ namespace ServerING.Repository {
             return appDBContent.Platform.ToList();
         }
 
-        public IEnumerable<Platform> GetByCost(int cost) {
-            return appDBContent.Platform.Where(p => p.Cost == cost).ToList();
-        }
-
         public Platform GetByID(int id) {
             return appDBContent.Platform.Find(id);
         }
 
         public Platform GetByName(string name) {
             return appDBContent.Platform.FirstOrDefault(p => p.Name == name);
-        }
-
-        public IEnumerable<Platform> GetByPopularity(ushort popularity) {
-            return appDBContent.Platform.Where(p => p.Popularity == popularity).ToList();
         }
     }
 }

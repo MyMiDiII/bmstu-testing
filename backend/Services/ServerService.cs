@@ -27,22 +27,11 @@ namespace ServerING.Services {
 
         public IEnumerable<PlayerBL> GetServerPlayers(int serverId);
 
-        Server GetServerByName(string name);
-        ServerBL GetServerByIP(string ip);
-
-        IEnumerable<Server> GetServersByGameName(string gameVersion);
-        IEnumerable<Server> GetServersByHostingID(int id);
-        IEnumerable<Server> GetServersByPlatformID(int id);
-        IEnumerable<Server> GetServersByRating(int rating);
-
         IEnumerable<ServerBL> FilterServers(IEnumerable<ServerBL> servers, ServerFilterDto filter);
         IEnumerable<ServerBL> SortServersByOption(IEnumerable<ServerBL> servers, ServerSortState sortOrder);
         IEnumerable<ServerBL> PaginationServers(IEnumerable<ServerBL> servers, int page, int pageSize);
-        IEnumerable<int> GetUserFavoriteServersIds(int userId);
 
         void UpdateServerRating(int serverId, int change);
-
-        bool IsServerExists(Server server);
     }
 
     public class ServerService : IServerService {
@@ -128,26 +117,9 @@ namespace ServerING.Services {
             return mapper.Map<ServerBL>(serverRepository.Delete(id));
         }
 
-        public Server GetServerByName(string name) {
-            return serverRepository.GetByName(name);
+        public ServerBL GetServerByName(string name) {
+            return mapper.Map<ServerBL>(serverRepository.GetByName(name));
         }
-
-        public IEnumerable<Server> GetServersByGameName(string gameName) {
-            return serverRepository.GetByGameName(gameName);
-        }
-
-        public IEnumerable<Server> GetServersByHostingID(int id) {
-            return serverRepository.GetByWebHostingID(id);
-        }
-
-        public IEnumerable<Server> GetServersByPlatformID(int id) {
-            return serverRepository.GetByPlatformID(id);
-        }
-
-        public ServerBL GetServerByIP(string ip) {
-            return mapper.Map<ServerBL>(serverRepository.GetByIP(ip));
-        }
-
 
         public IEnumerable<PlayerBL> GetServerPlayers(int serverId) {
             if (!IsExistById(serverId))
@@ -184,7 +156,6 @@ namespace ServerING.Services {
         }
 
         public IEnumerable<ServerBL> SortServersByOption(IEnumerable<ServerBL> servers, ServerSortState sortOrder) {
-
             IEnumerable<ServerBL> filteredServers;
 
             if (sortOrder == ServerSortState.NameDesc) {
@@ -227,37 +198,11 @@ namespace ServerING.Services {
             return paginatedServers;
         }
 
-        public IEnumerable<Server> GetServersByRating(int rating) {
-            return serverRepository.GetByRating(rating);
-        }
-
         public void UpdateServerRating(int serverId, int change) {
             Server server = serverRepository.GetByID(serverId);
             server.Rating += change;
 
             serverRepository.Update(server);
-        }
-
-        public IEnumerable<int> GetUserFavoriteServersIds(int userId) {
-            return userRepository.GetFavoriteServersByUserId(userId).Select(s => s.Id);
-        }
-
-
-        public bool IsServerExists(Server server) {
-            
-            Server serverCheckName = serverRepository.GetByName(server.Name);
-
-            if (serverCheckName != null && server.Id != serverCheckName.Id) {
-                return true;
-            }
-
-            Server serverCheckIP = serverRepository.GetByIP(server.Ip);
-
-            if (serverCheckIP != null && server.Id != serverCheckIP.Id) {
-                return true;
-            }
-
-            return false;
         }
     }
 }

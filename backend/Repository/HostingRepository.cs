@@ -75,13 +75,5 @@ namespace ServerING.Repository {
         public WebHosting GetByName(string name) {
             return appDBContent.WebHosting.FirstOrDefault(w => w.Name == name);
         }
-
-        public IEnumerable<WebHosting> GetByPricePerMonth(int pricePerMonth) {
-            return appDBContent.WebHosting.Where(w => w.PricePerMonth == pricePerMonth).ToList();
-        }
-
-        public IEnumerable<WebHosting> GetBySubMonths(ushort subMonths) {
-            return appDBContent.WebHosting.Where(w => w.SubMonths == subMonths).ToList();
-        }
     }
 }
