@@ -4,31 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace ServerING.Mocks {
+namespace UnitBL {
     /*
-    public class WebHostingMock : IWebHostingRepository {
-
-        private List<WebHosting> _webHostings = new List<WebHosting> {
-            new WebHosting {
-                Id = 1,
-                Name = "WH1",
-                PricePerMonth = 1000,
-                SubMonths = 1
-            },
-            new WebHosting {
-                Id = 2,
-                Name = "WH2",
-                PricePerMonth = 2000,
-                SubMonths = 2
-            },
-            new WebHosting {
-                Id = 3,
-                Name = "WH3",
-                PricePerMonth = 3000,
-                SubMonths = 3
-            }
-        };
-
+    public class WebHostingMock : MockData, IWebHostingRepository {
 
         public void Add(WebHosting model) {
             _webHostings.Add(model);

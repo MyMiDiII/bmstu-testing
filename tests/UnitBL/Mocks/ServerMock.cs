@@ -1,48 +1,32 @@
 ﻿using ServerING.Interfaces;
 using ServerING.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 
-namespace ServerING.Mocks {
+namespace UnitBL {
     /*
-    public class ServerMock : IServerRepository {
-
-        private List<Server> _servers = new List<Server> {
-            new Server {
-                Id = 1,
-                Name = "Server1",
-                Ip = "IP1",
-                GameVersion = "GV1",
-                HostingID = 1,
-                PlatformID = 1
-            },
-            new Server {
-                Id = 2,
-                Name = "Server2",
-                Ip = "IP2",
-                GameVersion = "GV2",
-                HostingID = 2,
-                PlatformID = 2
-            },
-            new Server {
-                Id = 3,
-                Name = "Server3",
-                Ip = "IP3",
-                GameVersion = "GV3",
-                HostingID = 3,
-                PlatformID = 3
-            }
-        };
-
+    public class ServerMock : MockData, IServerRepository {
 
         public void Add(Server model) {
+            model.Id = _servers.Count + 1;
             _servers.Add(model);
         }
 
         public Server Delete(int id) {
-            Server server = _servers[id - 1];
+            Server server = _servers.FirstOrDefault(x => x.Id == id);
+
             _servers.Remove(server);
+
+            IEnumerable<int> favoriteServersIds = _favoriteServers.Where(x => x.ServerID == id).Select(x => x.Id);
+            foreach (int favoriteServerId in favoriteServersIds.ToList()) { 
+                FavoriteServer favoriteServer = _favoriteServers.FirstOrDefault(x => x.Id == favoriteServerId);
+                _favoriteServers.Remove(favoriteServer);
+            }
+
+            IEnumerable<int> serverPlayersIds = _serverPlayers.Where(x => x.ServerID == id).Select(x => x.Id);
+            foreach (int serverPlayersId in serverPlayersIds.ToList()) {
+                ServerPlayer serverPlayer = _serverPlayers.FirstOrDefault(x => x.Id == serverPlayersId);
+                _serverPlayers.Remove(serverPlayer);
+            }
 
             return server;
         }
@@ -56,7 +40,7 @@ namespace ServerING.Mocks {
         }
 
         public Server GetByID(int id) {
-            return _servers[id - 1];
+            return _servers.FirstOrDefault(x => x.Id == id);
         }
 
         public Server GetByIP(string ip) {
@@ -71,12 +55,48 @@ namespace ServerING.Mocks {
             return _servers.Where(x => x.PlatformID == id);
         }
 
+        public IEnumerable<Server> GetByRating(int rating) {
+            return _servers.Where(x => x.Rating == rating);
+        }
+
+        public IEnumerable<FavoriteServer> GetByUserID(int id) {
+            return _favoriteServers.Where(fs => fs.UserID == id);
+        }
+
         public IEnumerable<Server> GetByWebHostingID(int id) {
             return _servers.Where(x => x.HostingID == id);
         }
 
+        public IEnumerable<Player> GetPlayersByServerID(int id) {
+            Server server = _servers.FirstOrDefault(s => s.Id == id);
+
+            if (server != null) {
+                var playersOnServerIds = _serverPlayers.Where(x => x.ServerID == id).Select(x => x.PlayerID);
+
+                IEnumerable<Player> players = _players.Where(x => playersOnServerIds.Contains(x.Id));
+
+                return players;
+            }
+
+            return null;
+        }
+
+        public WebHosting GetWebHostingByServerId(int id) {
+
+            if (id > 0) {
+                Server server = _servers.FirstOrDefault(s => s.Id == id);
+
+                if (server != null) {
+                    return _webHostings.FirstOrDefault(w => w.Id == server.HostingID);
+                }
+            }
+
+            return null;
+        }
+
         public void Update(Server model) {
-            Server server = _servers[model.Id - 1];
+            Server server = _servers.FirstOrDefault(s => s.Id == model.Id);
+            int id = _servers.FindIndex(s => s.Name == server.Name && s.Ip == server.Ip);
 
             server.Name = model.Name;
             server.Ip = model.Ip;
@@ -84,7 +104,7 @@ namespace ServerING.Mocks {
             server.PlatformID = model.PlatformID;
             server.HostingID = model.HostingID;
 
-            _servers[model.Id - 1] = server;
+            _servers[id] = server;
         }
     }
     */

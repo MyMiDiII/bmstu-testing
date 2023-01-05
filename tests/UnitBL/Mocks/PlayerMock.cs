@@ -1,35 +1,10 @@
 ﻿using ServerING.Interfaces;
 using ServerING.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 
-namespace ServerING.Mocks {
+namespace UnitBL {
     /*
-    public class PlayerMock : IPlayerRepository {
-
-        private List<Player> _players = new List<Player> {
-            new Player {
-                Id = 1,
-                Nickname = "NN1",
-                HoursPlayed = 1,
-                LastPlayed = new DateTime(2022, 5, 5)
-            },
-            new Player {
-                Id = 2,
-                Nickname = "NN2",
-                HoursPlayed = 2,
-                LastPlayed = new DateTime(2022, 5, 6)
-            },
-            new Player {
-                Id = 3,
-                Nickname = "NN3",
-                HoursPlayed = 3,
-                LastPlayed = new DateTime(2022, 5, 7)
-            }
-        };
-
+    public class PlayerMock : MockData, IPlayerRepository {
 
         public void Add(Player model) {
             _players.Add(model);

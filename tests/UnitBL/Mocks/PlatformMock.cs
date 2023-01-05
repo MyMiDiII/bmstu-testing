@@ -1,34 +1,10 @@
 ﻿using ServerING.Interfaces;
 using ServerING.Models;
-using System.Collections.Generic;
-using System.Linq;
 
 
 namespace UnitBL {
-    public class PlatformMock : IPlatformRepository {
-
-        private List<Platform> _platforms = new List<Platform> {
-            new Platform {
-                Id = 1,
-                Name = "Platform1",
-                Popularity = 1,
-                Cost = 1000
-            },
-            new Platform {
-                Id = 2,
-                Name = "Platform2",
-                Popularity = 2,
-                Cost = 2000
-            },
-            new Platform {
-                Id = 3,
-                Name = "Platform3",
-                Popularity = 3,
-                Cost = 3000
-            }
-        };
-        private int _nextID = 4;
-
+    public class PlatformMock : MockData, IPlatformRepository {
+        private int _nextID = _platforms.Count() + 1;
 
         public Platform Add(Platform model) {
             model.Id  = _nextID;
