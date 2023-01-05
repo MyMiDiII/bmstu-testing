@@ -3,8 +3,28 @@ using ServerING.Models;
 
 
 namespace UnitBL {
-    public class PlatformMock : MockData, IPlatformRepository {
-        private int _nextID = _platforms.Count() + 1;
+    public class PlatformMock : IPlatformRepository {
+        private List<Platform> _platforms = new List<Platform> {
+            new Platform {
+                Id = 1,
+                Name = "Platform1",
+                Popularity = 1,
+                Cost = 1000
+            },
+            new Platform {
+                Id = 2,
+                Name = "Platform2",
+                Popularity = 2,
+                Cost = 2000
+            },
+            new Platform {
+                Id = 3,
+                Name = "Platform3",
+                Popularity = 3,
+                Cost = 3000
+            }
+        };
+        private int _nextID = 4;
 
         public Platform Add(Platform model) {
             model.Id  = _nextID;
@@ -16,7 +36,7 @@ namespace UnitBL {
         }
 
         public Platform Delete(int id) {
-            Platform platform = _platforms[id - 1];
+            Platform platform = _platforms.First(x => x.Id == id);
             _platforms.Remove(platform);
 
             return platform;
@@ -26,20 +46,12 @@ namespace UnitBL {
             return _platforms;
         }
 
-        public IEnumerable<Platform> GetByCost(int cost) {
-            return _platforms.Where(x => x.Cost == cost);
-        }
-
         public Platform GetByID(int id) {
-            return _platforms[id - 1];
+            return _platforms.First(x => x.Id == id);
         }
 
         public Platform GetByName(string name) {
             return _platforms.FirstOrDefault(x => x.Name == name) ?? new Platform();
-        }
-
-        public IEnumerable<Platform> GetByPopularity(ushort popularity) {
-            return _platforms.Where(_x => _x.Popularity == popularity);
         }
 
         public Platform Update(Platform model) {

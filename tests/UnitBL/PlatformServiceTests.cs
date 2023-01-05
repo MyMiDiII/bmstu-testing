@@ -9,15 +9,20 @@ namespace UnitBL
 {
     public class PlatformServiceTests 
     {
-        [Fact]
-        public void TestPlatformAdd() {
-            IPlatformRepository platformRepository = new PlatformMock();
+        private IMapper _mapper;
+
+        public PlatformServiceTests() {
             var mockMapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new AutoMappingProfile());
             });
-            var mapper = mockMapper.CreateMapper();
-            PlatformService platformService = new PlatformService(platformRepository, mapper);
+            _mapper = mockMapper.CreateMapper();
+        }
+
+        [Fact]
+        public void TestPlatformAdd() {
+            IPlatformRepository platformRepository = new PlatformMock();
+            PlatformService platformService = new PlatformService(platformRepository, _mapper);
 
             PlatformBL expectedPlatform = new PlatformBL {
                 Name = "Platform4",
@@ -33,5 +38,95 @@ namespace UnitBL
             Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
         }
 
+        [Fact]
+        public void TestPlatformDelete() {
+            IPlatformRepository platformRepository = new PlatformMock();
+            PlatformService platformService = new PlatformService(platformRepository, _mapper);
+
+            PlatformBL expectedPlatform = new PlatformBL {
+                Id = 3,
+                Name = "Platform3",
+                Popularity = 3,
+                Cost = 3000
+            };
+
+            PlatformBL actualPlatform = platformService.DeletePlatform(3);
+
+            Assert.Equal(expectedPlatform.Id, actualPlatform.Id);
+            Assert.Equal(expectedPlatform.Name, actualPlatform.Name);
+            Assert.Equal(expectedPlatform.Popularity, actualPlatform.Popularity);
+            Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
+        }
+
+        [Fact]
+        public void TestPlatformUpdate() {
+            IPlatformRepository platformRepository = new PlatformMock();
+            PlatformService platformService = new PlatformService(platformRepository, _mapper);
+
+            PlatformBL expectedPlatform = new PlatformBL {
+                Id = 1,
+                Name = "Platform1Changed",
+                Popularity = 1,
+                Cost = 1000
+            };
+
+            PlatformBL actualPlatform = platformService.UpdatePlatform(1, expectedPlatform);
+
+            Assert.Equal(expectedPlatform.Name, actualPlatform.Name);
+            Assert.Equal(expectedPlatform.Popularity, actualPlatform.Popularity);
+            Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
+        }
+
+        [Fact]
+        public void TestPlatformGetById() {
+            IPlatformRepository platformRepository = new PlatformMock();
+            PlatformService platformService = new PlatformService(platformRepository, _mapper);
+
+            PlatformBL expectedPlatform = new PlatformBL {
+                Id = 1,
+                Name = "Platform1",
+                Popularity = 1,
+                Cost = 1000
+            };
+
+            PlatformBL actualPlatform = platformService.GetPlatformByID(1);
+
+            Assert.Equal(expectedPlatform.Id, actualPlatform.Id);
+            Assert.Equal(expectedPlatform.Name, actualPlatform.Name);
+            Assert.Equal(expectedPlatform.Popularity, actualPlatform.Popularity);
+            Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
+        }
+
+        [Fact]
+        public void TestPlatformGetAll() {
+            IPlatformRepository platformRepository = new PlatformMock();
+            PlatformService platformService = new PlatformService(platformRepository, _mapper);
+
+            var platforms = platformService.GetAllPlatforms();
+
+            Assert.IsType<List<PlatformBL>>(platforms);
+            Assert.Equal(3, platforms.Count());
+            Assert.All(platforms, item => Assert.InRange(item.Id, low: 1, high: 3));
+        }
+
+        [Fact]
+        public void TestPlatformGetByName() {
+            IPlatformRepository platformRepository = new PlatformMock();
+            PlatformService platformService = new PlatformService(platformRepository, _mapper);
+
+            PlatformBL expectedPlatform = new PlatformBL {
+                Id = 1,
+                Name = "Platform1",
+                Popularity = 1,
+                Cost = 1000
+            };
+
+            PlatformBL actualPlatform = platformService.GetPlatformByName("Platform1");
+
+            Assert.Equal(expectedPlatform.Id, actualPlatform.Id);
+            Assert.Equal(expectedPlatform.Name, actualPlatform.Name);
+            Assert.Equal(expectedPlatform.Popularity, actualPlatform.Popularity);
+            Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
+        }
     }
 }
