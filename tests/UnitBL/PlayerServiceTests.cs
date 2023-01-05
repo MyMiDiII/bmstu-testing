@@ -1,5 +1,8 @@
 using AutoMapper;
 
+using Allure.Xunit;
+using Allure.Xunit.Attributes;
+
 using ServerING.Utils;
 using ServerING.Services;
 using ServerING.ModelsBL;
@@ -7,6 +10,7 @@ using ServerING.Interfaces;
 
 namespace UnitBL
 {
+    [AllureOwner("EqualNine")]
     public class PlayerServiceTests 
     {
         private IMapper _mapper;
@@ -19,7 +23,7 @@ namespace UnitBL
             _mapper = mockMapper.CreateMapper();
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlayerAdd() {
             IPlayerRepository playerRepository = new PlayerMock();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
