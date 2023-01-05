@@ -3,15 +3,40 @@ using ServerING.Models;
 
 
 namespace UnitBL {
-    /*
-    public class PlayerMock : MockData, IPlayerRepository {
+    public class PlayerMock : IPlayerRepository {
+        private List<Player> _players = new List<Player> {
+            new Player {
+                Id = 1,
+                Nickname = "NN1",
+                HoursPlayed = 1,
+                LastPlayed = new DateTime(2022, 5, 5)
+            },
+            new Player {
+                Id = 2,
+                Nickname = "NN2",
+                HoursPlayed = 2,
+                LastPlayed = new DateTime(2022, 5, 6)
+            },
+            new Player {
+                Id = 3,
+                Nickname = "NN3",
+                HoursPlayed = 3,
+                LastPlayed = new DateTime(2022, 5, 7)
+            }
+        };
+        private int _nextID = 4;
 
-        public void Add(Player model) {
+        public Player Add(Player model) {
+            model.Id  = _nextID;
+
+            _nextID++;
             _players.Add(model);
+
+            return _players.Last();
         }
 
         public Player Delete(int id) {
-            Player player = _players[id - 1];
+            Player player = _players.First(x => x.Id == id);
             _players.Remove(player);
 
             return player;
@@ -21,31 +46,26 @@ namespace UnitBL {
             return _players;
         }
 
-        public IEnumerable<Player> GetByHoursPlayed(int hoursPlayed) {
-            return _players.Where(x => x.HoursPlayed == hoursPlayed);
-        }
-
         public Player GetByID(int id) {
-            return _players[id - 1];
+            return _players.First(x => x.Id == id);
         }
 
-        public IEnumerable<Player> GetByLastPlayed(DateTime lastPlayed) {
-            return _players.Where(x =>x.LastPlayed == lastPlayed);
+        public Player GetByNickname(string name) {
+            return _players.FirstOrDefault(x => x.Nickname == name) ?? new Player();
         }
 
-        public Player GetByNickname(string nickname) {
-            return _players.FirstOrDefault(x => x.Nickname == nickname);
-        }
-
-        public void Update(Player model) {
+        public Player Update(Player model) {
             Player player = _players[model.Id - 1];
 
+            player.Id = model.Id;
             player.Nickname = model.Nickname;
             player.HoursPlayed = model.HoursPlayed;
             player.LastPlayed = model.LastPlayed;
 
             _players[model.Id - 1] = player;
+
+            return player;
         }
     }
-    */
+
 }
