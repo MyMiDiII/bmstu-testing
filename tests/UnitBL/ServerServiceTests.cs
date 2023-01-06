@@ -9,7 +9,9 @@ using ServerING.Utils;
 using ServerING.Services;
 using ServerING.Exceptions;
 using ServerING.Models;
+using ServerING.ModelsBL;
 using ServerING.DTO;
+using ServerING.Enums;
 using ServerING.Interfaces;
 
 namespace UnitBL
@@ -20,6 +22,7 @@ namespace UnitBL
     {
         private IMapper _mapper;
         private IEnumerable<Server> _servers;
+        private IEnumerable<ServerBL> _serversBL;
 
         public ServerServiceTests() {
             var mockMapper = new MapperConfiguration(cfg =>
@@ -30,7 +33,13 @@ namespace UnitBL
 
             var server1 = ServersOM.NumberedServer(1).build();
             var server2 = ServersOM.NumberedServer(2).build();
-            _servers = new List<Server> { server1, server2 };
+            var server13 = ServersOM.NumberedServer(13).build();
+            _servers = new List<Server> { server1, server2, server13 };
+
+            var serverBL1 = ServersOM.NumberedServer(1).buildBL();
+            var serverBL2 = ServersOM.NumberedServer(2).buildBL();
+            var serverBL13 = ServersOM.NumberedServer(13).buildBL();
+            _serversBL = new List<ServerBL> { serverBL1, serverBL2, serverBL13 };
         }
 
         [AllureXunit]
@@ -148,7 +157,54 @@ namespace UnitBL
         }
 
         [AllureXunit]
-        public void TestProcessServers() {
+        public void TestProcessServersFilter() {
+            // Arrange
+            var mockServerRepository = new Mock<IServerRepository>();
+            var serverService = new ServerService(mockServerRepository.Object, _mapper);
+            var filter = new ServerFilterDto() { Name = "1" };
+
+            // Act
+            var filteredServers = serverService.ProcessServers(_serversBL, filter, null, null, null);
+
+            //Assert
+            Assert.Equal(2, filteredServers.Count());
+            Assert.All(filteredServers, item => Assert.Contains("1", item.Name));
+        }
+
+        [AllureXunit]
+        public void TestProcessServersSort() {
+            // Arrange
+            var mockServerRepository = new Mock<IServerRepository>();
+            var serverService = new ServerService(mockServerRepository.Object, _mapper);
+            var filter = new ServerFilterDto();
+
+            // Act
+            var sortedServers = serverService.ProcessServers(
+                                    _serversBL, filter, ServerSortState.NameDesc, null, null);
+
+            //Assert
+            Assert.Equal(3, sortedServers.Count());
+            Assert.Collection(sortedServers,
+                              item => Assert.Equal("Server2", item.Name),
+                              item => Assert.Equal("Server13", item.Name),
+                              item => Assert.Equal("Server1", item.Name)
+                              );
+        }
+
+        [AllureXunit]
+        public void TestProcessServersPagination() {
+            // Arrange
+            var mockServerRepository = new Mock<IServerRepository>();
+            var serverService = new ServerService(mockServerRepository.Object, _mapper);
+            var filter = new ServerFilterDto();
+
+            // Act
+            var sortedServers = serverService.ProcessServers(
+                                    _serversBL, filter, null, 2, 2);
+
+            //Assert
+            Assert.Equal(1, sortedServers.Count());
+            Assert.Collection(sortedServers, item => Assert.Equal("Server13", item.Name));
         }
 
         [AllureXunit]
@@ -170,6 +226,20 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestUpdateServerRating() {
+            // Arrange
+            var serverBLNew = ServersOM.NumberedServer(3).withId(1).buildBL();
+
+            var mockServerRepository = new Mock<IServerRepository>();
+            mockServerRepository.Setup(repo => repo.GetByID(1)).Returns(
+                _servers.First(item => item.Id == 1));
+            var serverService = new ServerService(mockServerRepository.Object, _mapper);
+
+            // Act
+            serverService.UpdateServerRating(1, 10);
+
+            // Assert
+            mockServerRepository.Verify(repo => repo.GetByID(1), Times.Once);
+            mockServerRepository.Verify(repo => repo.Update(It.IsAny<Server>()), Times.Once);
         }
     }
 }
