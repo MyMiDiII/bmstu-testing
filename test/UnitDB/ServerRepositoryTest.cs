@@ -156,7 +156,7 @@ namespace UnitDB {
 
                 ServerRepository serverRepository = new ServerRepository(context, mapper);
                 var actualServers = serverRepository.GetAll();
-                Assert.Equal(1, actualServers.Count());
+                Assert.Single(actualServers);
             }
         }
 
@@ -223,7 +223,7 @@ namespace UnitDB {
 
                 ServerRepository serverRepository = new ServerRepository(context, mapper);
                 var actualPlayers = serverRepository.GetPlayersByServerID(1);
-                Assert.Equal(1, actualPlayers.Count());
+                Assert.Single(actualPlayers);
             }
         }
     }

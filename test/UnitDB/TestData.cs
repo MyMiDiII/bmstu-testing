@@ -48,5 +48,10 @@ namespace UnitDB {
             ServerID = 1,
             PlayerID = 1,
         };
+
+        public FavoriteServer favoriteServer = new FavoriteServer {
+            ServerID = 1,
+            UserID = 1,
+        };
     }
 }
