@@ -1,6 +1,5 @@
 using AutoMapper;
 
-using Allure.Xunit;
 using Allure.Xunit.Attributes;
 
 using ServerING.Utils;
@@ -11,6 +10,7 @@ using ServerING.Interfaces;
 namespace UnitBL
 {
     [AllureOwner("EqualNine")]
+    [AllureSuite("Player Service Tests")]
     public class PlayerServiceTests 
     {
         private IMapper _mapper;
@@ -44,7 +44,7 @@ namespace UnitBL
 
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlayerDelete() {
             IPlayerRepository playerRepository = new PlayerMock();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
@@ -64,7 +64,7 @@ namespace UnitBL
             Assert.Equal(expectedPlayer.LastPlayed, actualPlayer.LastPlayed);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlayerUpdate() {
             IPlayerRepository playerRepository = new PlayerMock();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
@@ -83,7 +83,7 @@ namespace UnitBL
             Assert.Equal(expectedPlayer.LastPlayed, actualPlayer.LastPlayed);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlayerGetById() {
             IPlayerRepository playerRepository = new PlayerMock();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
@@ -103,7 +103,7 @@ namespace UnitBL
             Assert.Equal(expectedPlayer.LastPlayed, actualPlayer.LastPlayed);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlayerGetAll() {
             IPlayerRepository playerRepository = new PlayerMock();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
@@ -115,7 +115,7 @@ namespace UnitBL
             Assert.All(players, item => Assert.InRange(item.Id, low: 1, high: 3));
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlayerGetByNickname() {
             IPlayerRepository playerRepository = new PlayerMock();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);

@@ -1,5 +1,7 @@
 using AutoMapper;
 
+using Allure.Xunit.Attributes;
+
 using ServerING.Utils;
 using ServerING.Services;
 using ServerING.ModelsBL;
@@ -7,6 +9,8 @@ using ServerING.Interfaces;
 
 namespace UnitBL
 {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("Hosting Service Tests")]
     public class HostingServiceTests 
     {
         private IMapper _mapper;
@@ -19,7 +23,7 @@ namespace UnitBL
             _mapper = mockMapper.CreateMapper();
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestHostingAdd() {
             IHostingRepository hostingRepository = new HostingMock();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
@@ -39,7 +43,7 @@ namespace UnitBL
             Assert.Equal(expectedHosting.SubMonths, actualHosting.SubMonths);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestHostingDelete() {
             IHostingRepository hostingRepository = new HostingMock();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
@@ -59,7 +63,7 @@ namespace UnitBL
             Assert.Equal(expectedHosting.SubMonths, actualHosting.SubMonths);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestHostingUpdate() {
             IHostingRepository hostingRepository = new HostingMock();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
@@ -78,7 +82,7 @@ namespace UnitBL
             Assert.Equal(expectedHosting.SubMonths, actualHosting.SubMonths);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestHostingGetById() {
             IHostingRepository hostingRepository = new HostingMock();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
@@ -98,7 +102,7 @@ namespace UnitBL
             Assert.Equal(expectedHosting.SubMonths, actualHosting.SubMonths);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestHostingGetAll() {
             IHostingRepository hostingRepository = new HostingMock();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
@@ -110,7 +114,7 @@ namespace UnitBL
             Assert.All(hostings, item => Assert.InRange(item.Id, low: 1, high: 3));
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestHostingGetByName() {
             IHostingRepository hostingRepository = new HostingMock();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);

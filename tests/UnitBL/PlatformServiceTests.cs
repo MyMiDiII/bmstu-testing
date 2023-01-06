@@ -1,5 +1,7 @@
 using AutoMapper;
 
+using Allure.Xunit.Attributes;
+
 using ServerING.Utils;
 using ServerING.Services;
 using ServerING.ModelsBL;
@@ -7,6 +9,8 @@ using ServerING.Interfaces;
 
 namespace UnitBL
 {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("Platform Service Tests")]
     public class PlatformServiceTests 
     {
         private IMapper _mapper;
@@ -19,7 +23,7 @@ namespace UnitBL
             _mapper = mockMapper.CreateMapper();
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlatformAdd() {
             IPlatformRepository platformRepository = new PlatformMock();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
@@ -38,7 +42,7 @@ namespace UnitBL
             Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlatformDelete() {
             IPlatformRepository platformRepository = new PlatformMock();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
@@ -58,7 +62,7 @@ namespace UnitBL
             Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlatformUpdate() {
             IPlatformRepository platformRepository = new PlatformMock();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
@@ -77,7 +81,7 @@ namespace UnitBL
             Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlatformGetById() {
             IPlatformRepository platformRepository = new PlatformMock();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
@@ -97,7 +101,7 @@ namespace UnitBL
             Assert.Equal(expectedPlatform.Cost, actualPlatform.Cost);
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlatformGetAll() {
             IPlatformRepository platformRepository = new PlatformMock();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
@@ -109,7 +113,7 @@ namespace UnitBL
             Assert.All(platforms, item => Assert.InRange(item.Id, low: 1, high: 3));
         }
 
-        [Fact]
+        [AllureXunit]
         public void TestPlatformGetByName() {
             IPlatformRepository platformRepository = new PlatformMock();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
