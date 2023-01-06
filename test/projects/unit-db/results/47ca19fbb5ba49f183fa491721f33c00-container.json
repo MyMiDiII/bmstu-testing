@@ -1,0 +1,12 @@
+{
+  "uuid": "7be03e0d-67e9-4e99-8357-a83f8ad2c175-UnitDB.UserRepositoryTest",
+  "name": "UnitDB.UserRepositoryTest",
+  "children": [
+    "9c93f304-9f27-46f2-af5b-fcf4f8615891-UnitDB.UserRepositoryTest.TestUserDeleteFavoriteServer"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1673024105649,
+  "stop": 1673024105654
+}

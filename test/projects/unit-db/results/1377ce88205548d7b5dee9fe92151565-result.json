@@ -1,0 +1,50 @@
+{
+  "uuid": "bd21c1f5-b0ab-4456-8925-20e3033a7201-UnitDB.HostingRepositoryTest.TestHostingDelete",
+  "historyId": "UnitDB.HostingRepositoryTest.TestHostingDelete",
+  "fullName": "UnitDB.HostingRepositoryTest.TestHostingDelete",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.HostingRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.HostingRepositoryTest.TestHostingDelete"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.HostingRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "Hosting Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.HostingRepositoryTest.TestHostingDelete",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673024105660,
+  "stop": 1673024105662
+}

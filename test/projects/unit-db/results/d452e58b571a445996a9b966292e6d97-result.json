@@ -1,0 +1,50 @@
+{
+  "uuid": "91859958-b534-4a14-adee-a1ec473b6791-UnitDB.CountryRepositoryTest.TestCountryAdd",
+  "historyId": "UnitDB.CountryRepositoryTest.TestCountryAdd",
+  "fullName": "UnitDB.CountryRepositoryTest.TestCountryAdd",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.CountryRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.CountryRepositoryTest.TestCountryAdd"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.CountryRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "Country Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.CountryRepositoryTest.TestCountryAdd",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673024105601,
+  "stop": 1673024105637
+}

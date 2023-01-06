@@ -1,0 +1,12 @@
+{
+  "uuid": "66c9a182-21ca-4e2c-9a64-a582fcfdaf9c-UnitDB.CountryRepositoryTest",
+  "name": "UnitDB.CountryRepositoryTest",
+  "children": [
+    "ccc4f094-448f-49c1-b685-b70c1936ce71-UnitDB.CountryRepositoryTest.TestCountryGetByName"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1673024105673,
+  "stop": 1673024105676
+}

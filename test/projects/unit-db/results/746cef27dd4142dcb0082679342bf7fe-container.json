@@ -1,0 +1,12 @@
+{
+  "uuid": "104ffcf4-64b0-4021-b5d9-769726047456-UnitDB.PlayerRepositoryTest",
+  "name": "UnitDB.PlayerRepositoryTest",
+  "children": [
+    "fe1acd6c-b626-4ccd-b423-1cb5a8fef62e-UnitDB.PlayerRepositoryTest.TestPlayerGetAll"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1673024105172,
+  "stop": 1673024105637
+}

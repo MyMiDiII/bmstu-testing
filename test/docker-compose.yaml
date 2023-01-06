@@ -8,5 +8,4 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      # - ./projects:/app/projects
-      - ./allure-results:/app/allure-results
+      - ./projects:/app/projects
