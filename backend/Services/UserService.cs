@@ -140,20 +140,7 @@ namespace ServerING.Services {
 
             var servers = mapper.Map<IEnumerable<ServerBL>>(userRepository.GetFavoriteServersByUserId(userId));
 
-            // Фильтрация
-            servers = serverService.FilterServers(servers, filter);
-
-            // Сортировка
-            if (sortState != null) {
-                servers = serverService.SortServersByOption(servers, sortState.Value);
-            }
-
-            // Пагинация
-            if (page != null) {
-                servers = serverService.PaginationServers(servers, page.Value, pageSize.Value);
-            }
-            
-            return servers;
+            return serverService.ProcessServers(servers, filter, sortState, page, pageSize);
         }
 
         public FavoriteServerBL AddFavoriteServer(int userId, int serverId) {
