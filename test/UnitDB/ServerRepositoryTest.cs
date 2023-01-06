@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Allure.Xunit.Attributes;
 
 using ServerING.Models;
 using ServerING.Repository;
@@ -7,6 +8,8 @@ using ServerING.Utils;
 
 
 namespace UnitDB {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("Server Repository Test")]
     public class ServerRepositoryTest {
         private IMapper mapper;
 
@@ -31,7 +34,8 @@ namespace UnitDB {
             context.SaveChanges();
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerAdd() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -59,7 +63,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerUpdate() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -90,7 +95,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerDelete() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -118,7 +124,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerGetById() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -143,7 +150,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerGetAll() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -160,7 +168,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerGetByIP() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -185,7 +194,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerGetByName() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -210,7 +220,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestServerGetPlayersByServerID() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()

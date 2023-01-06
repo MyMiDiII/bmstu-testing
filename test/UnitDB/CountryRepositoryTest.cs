@@ -1,17 +1,21 @@
 using Microsoft.EntityFrameworkCore;
+using Allure.Xunit.Attributes;
 
 using ServerING.Models;
 using ServerING.Repository;
 
 
 namespace UnitDB {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("Country Repository Test")]
     public class CountryRepositoryTest {
         private void LoadFixtures(TestData data, AppDBContent context) {
             context.Country.AddRange(data.country);
             context.SaveChanges();
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestCountryAdd() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -32,7 +36,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestCountryUpdate() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -58,7 +63,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestCountryDelete() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -81,7 +87,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestCountryGetById() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -101,7 +108,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestCountryGetAll() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -118,7 +126,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestCountryGetByName() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()

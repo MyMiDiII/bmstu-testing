@@ -1,17 +1,21 @@
 using Microsoft.EntityFrameworkCore;
+using Allure.Xunit.Attributes;
 
 using ServerING.Models;
 using ServerING.Repository;
 
 
 namespace UnitDB {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("Platform Repository Test")]
     public class PlatformRepositoryTest {
         private void LoadFixtures(TestData data, AppDBContent context) {
             context.Platform.AddRange(data.platform);
             context.SaveChanges();
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlatformAdd() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -32,7 +36,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlatformUpdate() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -58,7 +63,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlatformDelete() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -81,7 +87,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlatformGetById() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -101,7 +108,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlatformGetAll() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -118,7 +126,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlatformGetByName() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()

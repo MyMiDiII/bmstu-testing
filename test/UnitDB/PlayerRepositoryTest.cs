@@ -1,17 +1,21 @@
 using Microsoft.EntityFrameworkCore;
+using Allure.Xunit.Attributes;
 
 using ServerING.Models;
 using ServerING.Repository;
 
 
 namespace UnitDB {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("Player Repository Test")]
     public class PlayerRepositoryTest {
         private void LoadFixtures(TestData data, AppDBContent context) {
             context.Player.AddRange(data.player);
             context.SaveChanges();
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlayerAdd() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -32,7 +36,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlayerUpdate() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -58,7 +63,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlayerDelete() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -81,7 +87,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlayerGetById() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -101,7 +108,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlayerGetAll() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -118,7 +126,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestPlayerGetByName() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()

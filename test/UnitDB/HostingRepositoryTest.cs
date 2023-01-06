@@ -1,17 +1,21 @@
 using Microsoft.EntityFrameworkCore;
+using Allure.Xunit.Attributes;
 
 using ServerING.Models;
 using ServerING.Repository;
 
 
 namespace UnitDB {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("Hosting Repository Test")]
     public class HostingRepositoryTest {
         private void LoadFixtures(TestData data, AppDBContent context) {
             context.WebHosting.AddRange(data.hosting);
             context.SaveChanges();
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestHostingAdd() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -32,7 +36,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestHostingUpdate() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -58,7 +63,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestHostingDelete() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -81,7 +87,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestHostingGetById() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -101,7 +108,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+        [AllureXunit]
         public void TestHostingGetAll() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
@@ -118,7 +126,8 @@ namespace UnitDB {
             }
         }
 
-        [Fact]
+        // [Fact]
+[       AllureXunit]
         public void TestHostingGetByName() {
             var myDatabaseName = "mydatabase_" + DateTime.Now.ToFileTimeUtc();
             var options = new DbContextOptionsBuilder<AppDBContent>()
