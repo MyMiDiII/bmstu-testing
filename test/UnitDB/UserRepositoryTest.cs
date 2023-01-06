@@ -1,9 +1,7 @@
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 using ServerING.Models;
 using ServerING.Repository;
-using ServerING.Utils;
 
 
 namespace UnitDB {
