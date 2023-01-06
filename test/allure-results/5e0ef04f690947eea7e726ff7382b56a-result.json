@@ -1,0 +1,50 @@
+{
+  "uuid": "47c125bf-5b9e-4c9b-8cbe-e01cf7924a2a-UnitDB.UserRepositoryTest.TestUserDeleteFavoriteServer",
+  "historyId": "UnitDB.UserRepositoryTest.TestUserDeleteFavoriteServer",
+  "fullName": "UnitDB.UserRepositoryTest.TestUserDeleteFavoriteServer",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.UserRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.UserRepositoryTest.TestUserDeleteFavoriteServer"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.UserRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "User Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.UserRepositoryTest.TestUserDeleteFavoriteServer",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673021974071,
+  "stop": 1673021974078
+}

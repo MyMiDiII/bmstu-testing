@@ -1,0 +1,50 @@
+{
+  "uuid": "b2835af4-eeca-4903-a7bb-4dd5544c47d4-UnitDB.UserRepositoryTest.TestUserAddFavoriteServer",
+  "historyId": "UnitDB.UserRepositoryTest.TestUserAddFavoriteServer",
+  "fullName": "UnitDB.UserRepositoryTest.TestUserAddFavoriteServer",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.UserRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.UserRepositoryTest.TestUserAddFavoriteServer"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.UserRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "User Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.UserRepositoryTest.TestUserAddFavoriteServer",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673021974108,
+  "stop": 1673021974108
+}

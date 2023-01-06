@@ -8,4 +8,5 @@ services:
     ports:
       - "5050:5050"
     volumes:
-      - ./bin/Debug/net6.0/allure-results:/app/allure-results
+      # - ./projects:/app/projects
+      - ./allure-results:/app/allure-results

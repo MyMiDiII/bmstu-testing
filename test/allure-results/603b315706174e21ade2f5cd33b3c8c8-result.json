@@ -1,0 +1,50 @@
+{
+  "uuid": "8a034e67-9ebb-4cc2-952f-2f08306cbbf4-UnitDB.ServerRepositoryTest.TestServerUpdate",
+  "historyId": "UnitDB.ServerRepositoryTest.TestServerUpdate",
+  "fullName": "UnitDB.ServerRepositoryTest.TestServerUpdate",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.ServerRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.ServerRepositoryTest.TestServerUpdate"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.ServerRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "Server Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.ServerRepositoryTest.TestServerUpdate",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673021974166,
+  "stop": 1673021974175
+}

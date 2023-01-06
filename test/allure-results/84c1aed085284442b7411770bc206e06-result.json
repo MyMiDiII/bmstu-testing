@@ -1,0 +1,50 @@
+{
+  "uuid": "a2e71f8d-7ec8-4277-91b3-6a6fe2ed544c-UnitDB.CountryRepositoryTest.TestCountryDelete",
+  "historyId": "UnitDB.CountryRepositoryTest.TestCountryDelete",
+  "fullName": "UnitDB.CountryRepositoryTest.TestCountryDelete",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.CountryRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.CountryRepositoryTest.TestCountryDelete"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.CountryRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "Country Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.CountryRepositoryTest.TestCountryDelete",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673021974068,
+  "stop": 1673021974079
+}

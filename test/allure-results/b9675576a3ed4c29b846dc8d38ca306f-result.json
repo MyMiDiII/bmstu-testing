@@ -1,0 +1,50 @@
+{
+  "uuid": "82e4e804-2c9e-416a-a3b8-e383e3272054-UnitDB.HostingRepositoryTest.TestHostingGetById",
+  "historyId": "UnitDB.HostingRepositoryTest.TestHostingGetById",
+  "fullName": "UnitDB.HostingRepositoryTest.TestHostingGetById",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.HostingRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.HostingRepositoryTest.TestHostingGetById"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.HostingRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "Hosting Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.HostingRepositoryTest.TestHostingGetById",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673021974080,
+  "stop": 1673021974080
+}

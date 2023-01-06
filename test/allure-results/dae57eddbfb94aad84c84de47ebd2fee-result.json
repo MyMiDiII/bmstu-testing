@@ -1,0 +1,50 @@
+{
+  "uuid": "3fe2ddb9-70c0-4315-9751-7bd6524b9c09-UnitDB.PlatformRepositoryTest.TestPlatformAdd",
+  "historyId": "UnitDB.PlatformRepositoryTest.TestPlatformAdd",
+  "fullName": "UnitDB.PlatformRepositoryTest.TestPlatformAdd",
+  "labels": [
+    {
+      "name": "thread",
+      "value": ".NET Long Running Task"
+    },
+    {
+      "name": "host",
+      "value": "MacBook-Pro-Ivan"
+    },
+    {
+      "name": "testClass",
+      "value": "UnitDB.PlatformRepositoryTest"
+    },
+    {
+      "name": "testMethod",
+      "value": "UnitDB.PlatformRepositoryTest.TestPlatformAdd"
+    },
+    {
+      "name": "package",
+      "value": "UnitDB.PlatformRepositoryTest"
+    },
+    {
+      "name": "owner",
+      "value": "EqualNine"
+    },
+    {
+      "name": "suite",
+      "value": "Platform Repository Test"
+    }
+  ],
+  "links": [],
+  "name": "UnitDB.PlatformRepositoryTest.TestPlatformAdd",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": ""
+  },
+  "stage": "finished",
+  "steps": [],
+  "attachments": [],
+  "parameters": [],
+  "start": 1673021974066,
+  "stop": 1673021974069
+}
