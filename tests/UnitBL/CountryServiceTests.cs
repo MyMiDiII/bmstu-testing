@@ -67,31 +67,79 @@ namespace UnitBL
             mockCountryRepository.Verify(repo => repo.Add(It.IsAny<Country>()), Times.Never);
         }
 
-        /*
         [AllureXunit]
         public void TestCountryDelete() {
-            Assert.Equal(0, 1);
+            // Arrange
+            var mockCountryRepository = new Mock<ICountryRepository>();
+            var countryService = new CountryService(mockCountryRepository.Object, _mapper);
+
+            // Act
+            countryService.DeleteCountry(1);
+
+            // Assert
+            mockCountryRepository.Verify(repo => repo.Delete(1), Times.Once);
         }
 
         [AllureXunit]
         public void TestCountryUpdate() {
-            Assert.Equal(0, 1);
+            // Arrange
+            var countryBLNew = CountriesOM.NumberedCountry(3).withId(0).buildBL();
+
+            var mockCountryRepository = new Mock<ICountryRepository>();
+            mockCountryRepository.Setup(repo => repo.GetByID(1)).Returns(
+                _countries.First(item => item.Id == 1));
+            mockCountryRepository.Setup(repo => repo.GetAll()).Returns(_countries);
+            var countryService = new CountryService(mockCountryRepository.Object, _mapper);
+
+            // Act
+            countryService.UpdateCountry(1, countryBLNew);
+
+            // Assert
+            mockCountryRepository.Verify(repo => repo.GetByID(1), Times.Once);
+            mockCountryRepository.Verify(repo => repo.GetAll(), Times.Once);
+            mockCountryRepository.Verify(repo => repo.Update(It.IsAny<Country>()), Times.Once);
         }
 
         [AllureXunit]
         public void TestCountryGetById() {
-            Assert.Equal(0, 1);
+            var mockCountryRepository = new Mock<ICountryRepository>();
+            mockCountryRepository.Setup(repo => repo.GetByID(1)).Returns(
+                _countries.First(item => item.Id == 1));
+            var countryService = new CountryService(mockCountryRepository.Object, _mapper);
+
+            // Act
+            countryService.GetCountryByID(1);
+
+            // Assert
+            mockCountryRepository.Verify(repo => repo.GetByID(1), Times.Once);
         }
 
         [AllureXunit]
         public void TestCountryGetAll() {
-            Assert.Equal(0, 1);
+            // Arrange
+            var mockCountryRepository = new Mock<ICountryRepository>();
+            mockCountryRepository.Setup(repo => repo.GetAll()).Returns(_countries);
+            var countryService = new CountryService(mockCountryRepository.Object, _mapper);
+
+            // Act
+            countryService.GetAllCountries();
+
+            // Assert
+            mockCountryRepository.Verify(repo => repo.GetAll(), Times.Once);
         }
 
         [AllureXunit]
         public void TestCountryGetByName() {
-            Assert.Equal(0, 1);
+            var mockCountryRepository = new Mock<ICountryRepository>();
+            mockCountryRepository.Setup(repo => repo.GetByName("C1")).Returns(
+                _countries.First(item => item.Name == "C1"));
+            var countryService = new CountryService(mockCountryRepository.Object, _mapper);
+
+            // Act
+            countryService.GetCountryByName("C1");
+
+            // Assert
+            mockCountryRepository.Verify(repo => repo.GetByName("C1"), Times.Once);
         }
-        */
     }
 }
