@@ -3,7 +3,7 @@ using ServerING.Models;
 
 namespace UnitBL {
     /*
-    public class UserMock : MockData, IUserRepository {
+    public class UserStub : StubData, IUserRepository {
 
         public void Add(User model) {
             _users.Add(model);

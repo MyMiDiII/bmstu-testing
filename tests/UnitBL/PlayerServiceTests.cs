@@ -25,7 +25,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlayerAdd() {
-            IPlayerRepository playerRepository = new PlayerMock();
+            IPlayerRepository playerRepository = new PlayerStub();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
 
             PlayerBL expectedPlayer = new PlayerBL {
@@ -46,7 +46,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlayerDelete() {
-            IPlayerRepository playerRepository = new PlayerMock();
+            IPlayerRepository playerRepository = new PlayerStub();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
 
             PlayerBL expectedPlayer = new PlayerBL {
@@ -66,7 +66,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlayerUpdate() {
-            IPlayerRepository playerRepository = new PlayerMock();
+            IPlayerRepository playerRepository = new PlayerStub();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
 
             PlayerBL expectedPlayer = new PlayerBL {
@@ -85,7 +85,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlayerGetById() {
-            IPlayerRepository playerRepository = new PlayerMock();
+            IPlayerRepository playerRepository = new PlayerStub();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
 
             PlayerBL expectedPlayer = new PlayerBL {
@@ -105,7 +105,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlayerGetAll() {
-            IPlayerRepository playerRepository = new PlayerMock();
+            IPlayerRepository playerRepository = new PlayerStub();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
 
             var players = playerService.GetAllPlayers();
@@ -117,7 +117,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlayerGetByNickname() {
-            IPlayerRepository playerRepository = new PlayerMock();
+            IPlayerRepository playerRepository = new PlayerStub();
             PlayerService playerService = new PlayerService(playerRepository, _mapper);
 
             PlayerBL expectedPlayer = new PlayerBL {

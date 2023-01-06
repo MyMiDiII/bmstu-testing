@@ -1,7 +1,7 @@
 ﻿using ServerING.Models;
 
 namespace UnitBL {
-    public class MockData {
+    public class StubData {
 
         static public List<FavoriteServer> _favoriteServers = new List<FavoriteServer>();
 

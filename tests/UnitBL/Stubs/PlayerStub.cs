@@ -3,7 +3,7 @@ using ServerING.Models;
 
 
 namespace UnitBL {
-    public class PlayerMock : IPlayerRepository {
+    public class PlayerStub : IPlayerRepository {
         private List<Player> _players = new List<Player> {
             new Player {
                 Id = 1,

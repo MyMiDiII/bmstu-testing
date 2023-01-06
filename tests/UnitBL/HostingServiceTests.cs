@@ -25,7 +25,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestHostingAdd() {
-            IHostingRepository hostingRepository = new HostingMock();
+            IHostingRepository hostingRepository = new HostingStub();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
 
             WebHostingBL expectedHosting = new WebHostingBL {
@@ -45,7 +45,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestHostingDelete() {
-            IHostingRepository hostingRepository = new HostingMock();
+            IHostingRepository hostingRepository = new HostingStub();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
 
             WebHostingBL expectedHosting = new WebHostingBL {
@@ -65,7 +65,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestHostingUpdate() {
-            IHostingRepository hostingRepository = new HostingMock();
+            IHostingRepository hostingRepository = new HostingStub();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
 
             WebHostingBL expectedHosting = new WebHostingBL {
@@ -84,7 +84,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestHostingGetById() {
-            IHostingRepository hostingRepository = new HostingMock();
+            IHostingRepository hostingRepository = new HostingStub();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
 
             WebHostingBL expectedHosting = new WebHostingBL {
@@ -104,7 +104,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestHostingGetAll() {
-            IHostingRepository hostingRepository = new HostingMock();
+            IHostingRepository hostingRepository = new HostingStub();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
 
             var hostings = hostingService.GetAllHostings();
@@ -116,7 +116,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestHostingGetByName() {
-            IHostingRepository hostingRepository = new HostingMock();
+            IHostingRepository hostingRepository = new HostingStub();
             HostingService hostingService = new HostingService(hostingRepository, _mapper);
 
             WebHostingBL expectedHosting = new WebHostingBL {

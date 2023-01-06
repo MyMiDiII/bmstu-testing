@@ -3,7 +3,7 @@ using ServerING.Models;
 
 
 namespace UnitBL {
-    public class PlatformMock : IPlatformRepository {
+    public class PlatformStub : IPlatformRepository {
         private List<Platform> _platforms = new List<Platform> {
             new Platform {
                 Id = 1,

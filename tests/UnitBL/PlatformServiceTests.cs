@@ -25,7 +25,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlatformAdd() {
-            IPlatformRepository platformRepository = new PlatformMock();
+            IPlatformRepository platformRepository = new PlatformStub();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
 
             PlatformBL expectedPlatform = new PlatformBL {
@@ -44,7 +44,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlatformDelete() {
-            IPlatformRepository platformRepository = new PlatformMock();
+            IPlatformRepository platformRepository = new PlatformStub();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
 
             PlatformBL expectedPlatform = new PlatformBL {
@@ -64,7 +64,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlatformUpdate() {
-            IPlatformRepository platformRepository = new PlatformMock();
+            IPlatformRepository platformRepository = new PlatformStub();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
 
             PlatformBL expectedPlatform = new PlatformBL {
@@ -83,7 +83,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlatformGetById() {
-            IPlatformRepository platformRepository = new PlatformMock();
+            IPlatformRepository platformRepository = new PlatformStub();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
 
             PlatformBL expectedPlatform = new PlatformBL {
@@ -103,7 +103,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlatformGetAll() {
-            IPlatformRepository platformRepository = new PlatformMock();
+            IPlatformRepository platformRepository = new PlatformStub();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
 
             var platforms = platformService.GetAllPlatforms();
@@ -115,7 +115,7 @@ namespace UnitBL
 
         [AllureXunit]
         public void TestPlatformGetByName() {
-            IPlatformRepository platformRepository = new PlatformMock();
+            IPlatformRepository platformRepository = new PlatformStub();
             PlatformService platformService = new PlatformService(platformRepository, _mapper);
 
             PlatformBL expectedPlatform = new PlatformBL {

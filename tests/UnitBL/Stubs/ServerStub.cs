@@ -4,7 +4,7 @@ using ServerING.Models;
 
 namespace UnitBL {
     /*
-    public class ServerMock : MockData, IServerRepository {
+    public class ServerStub : StubData, IServerRepository {
 
         public void Add(Server model) {
             model.Id = _servers.Count + 1;

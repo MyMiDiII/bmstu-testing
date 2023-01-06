@@ -1,11 +1,8 @@
 ﻿using ServerING.Interfaces;
 using ServerING.Models;
-using System.Collections.Generic;
-using System.Linq;
-
 
 namespace UnitBL {
-    public class HostingMock : MockData, IHostingRepository {
+    public class HostingStub : IHostingRepository {
         private List<WebHosting> _hostings = new List<WebHosting> {
             new WebHosting {
                 Id = 1,
