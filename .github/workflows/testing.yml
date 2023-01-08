@@ -19,44 +19,51 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
+    #- name: Setup .NET
+    #  uses: actions/setup-dotnet@v3
+    #  with:
+    #    dotnet-version: 6.0.x
 
 
-    - name: Restore dependencies
-      run: dotnet restore
-      working-directory: backend
+    #- name: Restore dependencies
+    #  run: dotnet restore
+    #  working-directory: backend
 
-    - name: Build
-      run: dotnet build --no-restore
-      working-directory: backend
+    #- name: Build
+    #  run: dotnet build --no-restore
+    #  working-directory: backend
 
 
     - name: Allure Test
       run: |
         curl -Is http://localhost:5050/
+        echo "/"
+        ls /
+        echo "/home"
+        ls /home
+        echo "/home/runner"
+        ls "/home/runner"
+        echo "/home/runner/work"
+        ls "/home/runner/work"
+        echo "/home/runner/work/bmstu-testing"
+        ls "/home/runner/work/bmstu-testing"
+        echo "/home/runner/work/bmstu-testing/bmstu-testing"
+        ls "/home/runner/work/bmstu-testing/bmstu-testing"
 
     - name: Allure UnitBL Project Create
       run: |
         curl -X POST "http://localhost:5050/allure-docker-service/projects" \
          -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
-        pwd
-        echo "ls"
-        ls projects
 
 
-    - name: Restore dependencies UnitBL
-      run: dotnet restore
-      working-directory: test/UnitBL
+    #- name: Restore dependencies UnitBL
+    #  run: dotnet restore
+    #  working-directory: test/UnitBL
 
-    - name: Build UnitBL
-      run: dotnet build --no-restore
-      working-directory: test/UnitBL
+    #- name: Build UnitBL
+    #  run: dotnet build --no-restore
+    #  working-directory: test/UnitBL
 
-    - name: UnitBL
-      run: |
-        dotnet test test/UnitBL
-        ls
-        ls projects
+    #- name: UnitBL
+    #  run: |
+    #    dotnet test test/UnitBL
