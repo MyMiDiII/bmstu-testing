@@ -28,7 +28,7 @@ namespace ServerING {
         }
 
         // This method gets called by the runtime
-        public void ConfigureServices(IServiceCollection services) {
+        public virtual void ConfigureServices(IServiceCollection services) {
 
             // Connect to DB
             var provider = _configuration["Database"];
