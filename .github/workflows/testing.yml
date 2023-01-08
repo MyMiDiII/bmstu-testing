@@ -37,27 +37,20 @@ jobs:
     - name: Allure Test
       run: |
         curl -Is http://localhost:5050/
-      #  curl -X POST "http://localhost:5050/allure-docker-service/projects" \
-      #    -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
-      working-directory: test
 
-    #- name: Allure Test
-    #  #run: docker exec test_allure_1 curl localhost:5050/status
-    #  run: docker run --network container:test_allure_1 appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5050/
-
-    #- name: Allure UnitBL Project create
-    #  run: |
-    #   curl -X POST "http://0.0.0.0:5050/allure-docker-service/projects" \
-    #    -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
+    - name: Allure UnitBL Project Create
+      run: |
+       curl -X POST "http://localhost:5050/allure-docker-service/projects" \
+        -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
 
 
-    #- name: Restore dependencies UnitBL
-    #  run: dotnet restore
-    #  working-directory: test/UnitBL
+    - name: Restore dependencies UnitBL
+      run: dotnet restore
+      working-directory: test/UnitBL
 
-    #- name: Build UnitBL
-    #  run: dotnet build --no-restore
-    #  working-directory: test/UnitBL
+    - name: Build UnitBL
+      run: dotnet build --no-restore
+      working-directory: test/UnitBL
 
-    #- name: UnitBL
-    #  run: dotnet test test/UnitBL
+    - name: UnitBL
+      run: dotnet test test/UnitBL
