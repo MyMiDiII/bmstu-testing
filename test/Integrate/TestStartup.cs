@@ -19,7 +19,6 @@ namespace Integrate {
             _configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
             
             _configuration["DefaultConnection"] = "Server=localhost;Port=5432;Database=test_db; User Id=amunra23;Password=postgres";
-            Console.WriteLine(_configuration["DefaultConnection"]);
         }
 
         public override void ConfigureServices(IServiceCollection services) {
