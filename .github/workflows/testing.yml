@@ -40,8 +40,10 @@ jobs:
 
     - name: Allure UnitBL Project Create
       run: |
-       curl -X POST "http://localhost:5050/allure-docker-service/projects" \
-        -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
+        curl -X POST "http://localhost:5050/allure-docker-service/projects" \
+         -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
+        pwd
+        ls
 
 
     - name: Restore dependencies UnitBL
