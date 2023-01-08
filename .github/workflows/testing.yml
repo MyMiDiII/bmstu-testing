@@ -14,7 +14,7 @@ jobs:
         ports:
           - "5050:5050"
         volumes:
-          - /projects:/app/projects
+          - /home/runner/work/bmstu-testing/projects:/app/projects
 
     steps:
     #- name: Chown user
