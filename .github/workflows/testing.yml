@@ -44,6 +44,7 @@ jobs:
          -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
         pwd
         ls
+        ls projects
 
 
     - name: Restore dependencies UnitBL
