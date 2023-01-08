@@ -17,10 +17,10 @@ jobs:
           - /home/runner/work/bmstu-testing/bmstu-testing/test/projects:/app/projects
 
     steps:
-    - name: Chown user
-      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+    #- name: Chown user
+    #  run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
 
-    - uses: actions/checkout@v3
+    #- uses: actions/checkout@v3
 
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v3
