@@ -56,4 +56,6 @@ jobs:
       working-directory: test/UnitBL
 
     - name: UnitBL
-      run: dotnet test test/UnitBL
+      run: |
+        dotnet test test/UnitBL
+        dotnet test test/UnitBL
