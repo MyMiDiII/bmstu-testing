@@ -24,6 +24,16 @@ jobs:
       working-directory: backend
 
 
+    - name: Allure Build
+      run: docker-compose up -d
+      working-directory: test
+
+    - name: Allure UnitBL Project create
+      run: |
+       curl -X POST "http://localhost:5050/allure-docker-service/projects" \
+        -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
+
+
     - name: Restore dependencies UnitBL
       run: dotnet restore
       working-directory: test/UnitBL
