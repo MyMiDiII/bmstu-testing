@@ -25,12 +25,15 @@ jobs:
 
 
     - name: Allure Build
-      run: docker-compose up -d
+      run: |
+        docker-compose up -d
+        curl -X POST "http://localhost:5050/allure-docker-service/projects" \
+          -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
       working-directory: test
 
-    - name: Allure Test
-      #run: docker exec test_allure_1 curl localhost:5050/status
-      run: docker run --network container:test_allure_1 appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5050/
+    #- name: Allure Test
+    #  #run: docker exec test_allure_1 curl localhost:5050/status
+    #  run: docker run --network container:test_allure_1 appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5050/
 
     #- name: Allure UnitBL Project create
     #  run: |
