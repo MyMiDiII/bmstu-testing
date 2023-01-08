@@ -29,7 +29,8 @@ jobs:
       working-directory: test
 
     - name: Allure Test
-      run: docker exec test_allure_1 curl localhost:5050/status
+      #run: docker exec test_allure_1 curl localhost:5050/status
+      run: docker run --network container:test_allure_1 appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5050/
 
     #- name: Allure UnitBL Project create
     #  run: |
