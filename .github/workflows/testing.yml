@@ -14,11 +14,11 @@ jobs:
         ports:
           - "5050:5050"
         volumes:
-          - /home/projects:/app/projects
+          - /home/runner/work/bmstu-testing/bmstu-testing/test/projects:/app/projects
 
     steps:
-    #- name: Chown user
-    #  run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+    - name: Chown user
+      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
 
     - uses: actions/checkout@v3
 
@@ -36,6 +36,9 @@ jobs:
     #  run: dotnet build --no-restore
     #  working-directory: backend
 
+    - name: Fix permissions
+      run: |
+          sudo chmod ugo+rwx /home/runner/work/bmstu-testing/bmstu-testing/test/projects
 
     - name: Allure Test
       run: |
