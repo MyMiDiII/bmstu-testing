@@ -3,7 +3,7 @@ name: Test
 on: push
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,6 +14,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+
     - name: Restore dependencies
       run: dotnet restore
       working-directory: backend
@@ -21,3 +22,15 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
       working-directory: backend
+
+
+    - name: Restore dependencies UnitBL
+      run: dotnet restore
+      working-directory: test/UnitBL
+
+    - name: Build UnitBL
+      run: dotnet build --no-restore
+      working-directory: test/UnitBL
+
+    - name: UnitBL
+      run: dotnet test test/UnitBL
