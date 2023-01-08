@@ -37,6 +37,8 @@ jobs:
     - name: Allure Test
       run: |
         curl -Is http://localhost:5050/
+        curl -X POST "http://localhost:5050/allure-docker-service/projects" \
+         -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
         echo "/"
         ls /
         echo "/home"
