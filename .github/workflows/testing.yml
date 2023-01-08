@@ -58,4 +58,5 @@ jobs:
     - name: UnitBL
       run: |
         dotnet test test/UnitBL
-        dotnet test test/UnitBL
+        ls
+        ls projects
