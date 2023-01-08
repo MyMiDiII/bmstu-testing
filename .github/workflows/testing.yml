@@ -14,7 +14,7 @@ jobs:
         ports:
           - "5050:5050"
         volumes:
-          - /home/runner/work/bmstu-testing/bmstu-testing/test/projects:/app/projects
+          - /home/runner/work/bmstu-testing/bmstu-testing/test/projects:/app/allure-docker-api/static/projects
 
     steps:
     - name: Chown user
