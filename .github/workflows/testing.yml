@@ -56,8 +56,8 @@ jobs:
         ls "/home/runner/work/bmstu-testing/bmstu-testing"
         echo "/home/runner/work/bmstu-testing/bmstu-testing/test"
         ls "/home/runner/work/bmstu-testing/bmstu-testing/test"
-        echo "/home/runner/work/bmstu-testing/bmstu-testing/test/project"
-        ls "/home/runner/work/bmstu-testing/bmstu-testing/test/project"
+        echo "/home/runner/work/bmstu-testing/bmstu-testing/test/projects"
+        ls "/home/runner/work/bmstu-testing/bmstu-testing/test/projects"
 
     - name: Allure UnitBL Project Create
       run: |
