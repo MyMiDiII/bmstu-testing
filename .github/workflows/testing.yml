@@ -29,11 +29,11 @@ jobs:
       working-directory: test
 
     - name: Allure Test
-      run: curl -Is "http://localhost:5050/" | head -1
+      run: curl -Is "http://0.0.0.0:5050/" | head -1
 
     - name: Allure UnitBL Project create
       run: |
-       curl -X POST "http://localhost:5050/allure-docker-service/projects" \
+       curl -X POST "http://0.0.0.0:5050/allure-docker-service/projects" \
         -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
 
 
