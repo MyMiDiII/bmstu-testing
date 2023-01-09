@@ -53,7 +53,7 @@ namespace E2E {
             // Assert
             Assert.Equal(HttpStatusCode.OK, loginResponse.StatusCode);
             Assert.Equal(loginData.Login, loginResult.Login);
-            Assert.Equal("use", loginResult.Role);
+            Assert.Equal("user", loginResult.Role);
 
 
             // Get Servers

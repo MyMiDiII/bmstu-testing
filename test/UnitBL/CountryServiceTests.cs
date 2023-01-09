@@ -95,7 +95,7 @@ namespace UnitBL
             countryService.UpdateCountry(1, countryBLNew);
 
             // Assert
-            mockCountryRepository.Verify(repo => repo.GetByID(1), Times.Once);
+            mockCountryRepository.Verify(repo => repo.GetByID(2), Times.Once);
             mockCountryRepository.Verify(repo => repo.GetAll(), Times.Once);
             mockCountryRepository.Verify(repo => repo.Update(It.IsAny<Country>()), Times.Once);
         }
