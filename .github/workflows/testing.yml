@@ -35,3 +35,16 @@ jobs:
     - name: UnitBL
       run: |
         dotnet test test/UnitBL --logger "console;verbosity=detailed"
+
+
+    - name: Restore dependencies UnitDB
+      run: dotnet restore
+      working-directory: test/UnitDB
+
+    - name: Build UnitDB
+      run: dotnet build --no-restore
+      working-directory: test/UnitDB
+
+    - name: UnitDB
+      run: |
+        dotnet test test/UnitDB --logger "console;verbosity=detailed"
