@@ -74,4 +74,5 @@ jobs:
 
     - name: Integrate
       run: |
-        ./test/Integrate/test.sh
+        cd ./test/Integrate
+        ./test.sh
