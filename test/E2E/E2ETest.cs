@@ -9,6 +9,8 @@ using System.Web;
 
 
 namespace E2E {
+    [AllureOwner("EqualNine")]
+    [AllureSuite("E2E Test")]
     public class E2ETest: IClassFixture<MyWebFactory> {
         private MyWebFactory factory;
         private string baseUrl = "http://localhost:5555/api/v1/";
