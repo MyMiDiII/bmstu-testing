@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Logging;
 using ServerING;
 using ServerING.Interfaces;
 using ServerING.Models;
@@ -44,10 +45,36 @@ namespace Integrate {
             services.AddTransient<ICountryRepository, CountryRepository>();
 
             // Controllers
-            services.AddControllers();
+            // services.AddControllers();
+            services.AddControllers().AddApplicationPart(typeof(Startup).Assembly);
 
             // AutoMapper
             services.AddAutoMapper(typeof(AutoMappingProfile));
+
+            // DTO converters
+            services.AddDtoConverters();
+
+            // CORS
+            services.AddCors(options =>{
+                options.AddPolicy(name: "MyPolicy",
+                    policy => {
+                        policy
+                            .WithOrigins("*")
+                            .WithHeaders("*")
+                            .WithMethods("*");
+                    });
+            });
+        }
+
+        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory) {
+            app.UseRouting();
+            app.UseCors();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
         }
     }
 }

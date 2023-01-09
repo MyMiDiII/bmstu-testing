@@ -9,7 +9,7 @@ namespace Integrate.Utils {
         private TransactionScope transactionScope;
 
         public ResetDatabase() {
-            transactionScope = new TransactionScope();
+            transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
         }
 
         public override void Before(MethodInfo methodUnderTest) { }

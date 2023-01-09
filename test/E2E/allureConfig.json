@@ -1,0 +1,5 @@
+{
+  "allure": {
+    "directory": "../../../../projects/e2e/results"
+  }
+}
