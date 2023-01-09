@@ -18,13 +18,13 @@ namespace Integrate {
         public TestStartup(IWebHostEnvironment hostEnv): base(hostEnv) {
             // Тянет из файла dbsettings.json в папке backend почему-то... Не работает, использую строку подключения другую
             _configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
-            
-            _configuration["DefaultConnection"] = "Server=localhost;Port=5432;Database=test_db; User Id=amunra23;Password=postgres";
+
+            _configuration["TestConnection"] = "Server=localhost;Port=5432;Database=testdb; User Id=postgres;Password=postgres";
         }
 
         public override void ConfigureServices(IServiceCollection services) {
             services.AddDbContext<AppDBContent>(
-                options => options.UseNpgsql(_configuration["DefaultConnection"] ?? "Error"),
+                options => options.UseNpgsql(_configuration["TestConnection"] ?? "Error"),
                 ServiceLifetime.Transient
             );
 

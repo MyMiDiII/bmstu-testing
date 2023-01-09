@@ -76,7 +76,7 @@ namespace ServerING.Services {
             UserBL user = GetUserByLogin(loginDto.Login);
 
             if (user == null) {
-                Console.WriteLine("User: no such user");
+                //Console.WriteLine("User: no such user");
                 return null;
             }
 
@@ -84,7 +84,7 @@ namespace ServerING.Services {
                 return user;
             }
             else {
-                Console.WriteLine("User: wrong password");
+                //Console.WriteLine("User: wrong password");
                 return null;
             }
         }

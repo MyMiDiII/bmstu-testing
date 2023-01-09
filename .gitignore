@@ -16,3 +16,5 @@
 # My
 *.DS_Store
 *test/projects/
+
+!*test/projects/.gitkeep

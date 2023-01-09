@@ -1,5 +1,5 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=5432;Database=test_db; User Id=amunra23;Password=postgres"
+    "DefaultConnection": "Server=localhost;Port=5432;Database=testdb;User Id=postgres;Password=postgres"
   }
 }

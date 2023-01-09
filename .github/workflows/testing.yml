@@ -1,0 +1,92 @@
+name: Test
+
+on: push
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: testdb
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+
+
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: backend
+
+    - name: Build
+      run: dotnet build --no-restore
+      working-directory: backend
+
+
+    - name: Restore dependencies UnitBL
+      run: dotnet restore
+      working-directory: test/UnitBL
+
+    - name: Build UnitBL
+      run: dotnet build --no-restore
+      working-directory: test/UnitBL
+
+    - name: UnitBL
+      run: |
+        dotnet test test/UnitBL --logger "console;verbosity=detailed"
+
+
+    - name: Restore dependencies UnitDB
+      run: dotnet restore
+      working-directory: test/UnitDB
+
+    - name: Build UnitDB
+      run: dotnet build --no-restore
+      working-directory: test/UnitDB
+
+    - name: UnitDB
+      run: |
+        dotnet test test/UnitDB --logger "console;verbosity=detailed"
+
+
+    - name: Restore dependencies Integrate
+      run: dotnet restore
+      working-directory: test/Integrate
+
+    - name: Build Integrate
+      run: dotnet build --no-restore
+      working-directory: test/Integrate
+
+    - name: Integrate
+      run: |
+        cd ./test/Integrate
+        ./test.sh
+
+
+    - name: Restore dependencies E2E
+      run: dotnet restore
+      working-directory: test/E2E
+
+    - name: Build E2E
+      run: dotnet build --no-restore
+      working-directory: test/E2E
+
+    - name: E2E
+      run: |
+        cd ./test/E2E
+        ./test.sh

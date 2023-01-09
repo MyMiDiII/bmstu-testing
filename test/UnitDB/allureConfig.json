@@ -1,5 +1,5 @@
 {
   "allure": {
-    "directory": "../../../../projects/unit-db/results"
+    "directory": "allure-results"
   }
 }
