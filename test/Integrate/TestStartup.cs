@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Logging;
 using ServerING;
 using ServerING.Interfaces;
 using ServerING.Models;
@@ -19,7 +20,6 @@ namespace Integrate {
             _configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbsettings.json").Build();
             
             _configuration["DefaultConnection"] = "Server=localhost;Port=5432;Database=test_db; User Id=amunra23;Password=postgres";
-            Console.WriteLine(_configuration["DefaultConnection"]);
         }
 
         public override void ConfigureServices(IServiceCollection services) {
@@ -45,10 +45,36 @@ namespace Integrate {
             services.AddTransient<ICountryRepository, CountryRepository>();
 
             // Controllers
-            services.AddControllers();
+            // services.AddControllers();
+            services.AddControllers().AddApplicationPart(typeof(Startup).Assembly);
 
             // AutoMapper
             services.AddAutoMapper(typeof(AutoMappingProfile));
+
+            // DTO converters
+            services.AddDtoConverters();
+
+            // CORS
+            services.AddCors(options =>{
+                options.AddPolicy(name: "MyPolicy",
+                    policy => {
+                        policy
+                            .WithOrigins("*")
+                            .WithHeaders("*")
+                            .WithMethods("*");
+                    });
+            });
+        }
+
+        public override void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory) {
+            app.UseRouting();
+            app.UseCors();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
         }
     }
 }

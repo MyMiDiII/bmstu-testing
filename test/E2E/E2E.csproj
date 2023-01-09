@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../backend/ServerING.csproj" />
+    <ProjectReference Include="../Integrate/Integrate.csproj" />
   </ItemGroup>
 
 </Project>
