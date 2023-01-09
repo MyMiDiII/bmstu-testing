@@ -5,77 +5,33 @@ on: push
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    services:
-      allure:
-        image: "frankescobar/allure-docker-service"
-        env:
-          CHECK_RESULTS_EVERY_SECONDS: 5
-          KEEP_HISTORY: 1
-        ports:
-          - "5050:5050"
-        volumes:
-          - /home/runner/work/bmstu-testing/bmstu-testing/test/projects:/app/allure-docker-api/static/projects
 
     steps:
-    - name: Chown user
-      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-
     - uses: actions/checkout@v3
 
-    #- name: Setup .NET
-    #  uses: actions/setup-dotnet@v3
-    #  with:
-    #    dotnet-version: 6.0.x
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
 
 
-    #- name: Restore dependencies
-    #  run: dotnet restore
-    #  working-directory: backend
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: backend
 
-    #- name: Build
-    #  run: dotnet build --no-restore
-    #  working-directory: backend
+    - name: Build
+      run: dotnet build --no-restore
+      working-directory: backend
 
-    - name: Fix permissions
+
+    - name: Restore dependencies UnitBL
+      run: dotnet restore
+      working-directory: test/UnitBL
+
+    - name: Build UnitBL
+      run: dotnet build --no-restore
+      working-directory: test/UnitBL
+
+    - name: UnitBL
       run: |
-          sudo chmod ugo+rwx /home/runner/work/bmstu-testing/bmstu-testing/test/projects
-
-    - name: Allure Test
-      run: |
-        curl -Is http://localhost:5050/
-        curl -X POST "http://localhost:5050/allure-docker-service/projects" \
-         -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
-        echo "/"
-        ls /
-        echo "/home"
-        ls /home
-        echo "/home/runner"
-        ls "/home/runner"
-        echo "/home/runner/work"
-        ls "/home/runner/work"
-        echo "/home/runner/work/bmstu-testing"
-        ls "/home/runner/work/bmstu-testing"
-        echo "/home/runner/work/bmstu-testing/bmstu-testing"
-        ls "/home/runner/work/bmstu-testing/bmstu-testing"
-        echo "/home/runner/work/bmstu-testing/bmstu-testing/test"
-        ls "/home/runner/work/bmstu-testing/bmstu-testing/test"
-        echo "/home/runner/work/bmstu-testing/bmstu-testing/test/projects"
-        ls "/home/runner/work/bmstu-testing/bmstu-testing/test/projects"
-
-    - name: Allure UnitBL Project Create
-      run: |
-        curl -X POST "http://localhost:5050/allure-docker-service/projects" \
-         -H  "accept: */*" -H  "Content-Type: application/json" -d "{\"id\":\"unit-bl\"}"
-
-
-    #- name: Restore dependencies UnitBL
-    #  run: dotnet restore
-    #  working-directory: test/UnitBL
-
-    #- name: Build UnitBL
-    #  run: dotnet build --no-restore
-    #  working-directory: test/UnitBL
-
-    #- name: UnitBL
-    #  run: |
-    #    dotnet test test/UnitBL
+        dotnet test test/UnitBL
