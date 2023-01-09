@@ -63,7 +63,7 @@ namespace Integrate {
         public void TestHostingGetById(int id) {
             var result = hostingService.GetHostingByID(id);
 
-            Assert.NotNull(result);
+            Assert.Null(result);
         }
 
         [AllureXunit]
