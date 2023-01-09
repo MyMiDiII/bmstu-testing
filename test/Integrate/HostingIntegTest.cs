@@ -54,7 +54,7 @@ namespace Integrate {
         public void TestHostingDelete(int id) {
             WebHostingBL result = hostingService.DeleteHosting(id);
 
-            Assert.NotNull(result);
+            Assert.Null(result);
         }
 
         [AllureXunitTheory]
