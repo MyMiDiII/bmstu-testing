@@ -34,4 +34,4 @@ jobs:
 
     - name: UnitBL
       run: |
-        dotnet test test/UnitBL
+        dotnet test test/UnitBL --logger "console;verbosity=detailed"
