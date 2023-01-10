@@ -8,10 +8,9 @@ def test_insert():
     with open("../backend/DataGenerator/data/country_data.csv", "r") as file:
         strCountries = csv.reader(file, delimiter=';')
         countries = [
-            Country(
-                name=strCountry[0],
-                level_of_interest=strCountry[1],
-                overall_players=strCountry[2])
+            Country(name=strCountry[0],
+                    level_of_interest=strCountry[1],
+                    overall_players=strCountry[2])
             for strCountry in strCountries]
 
         print("BEFORE")
