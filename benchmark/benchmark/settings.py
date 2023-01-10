@@ -74,30 +74,29 @@ WSGI_APPLICATION = 'benchmark.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-DB_ENGINE = os.getenv("DB_ENGINE")
+# DB_ENGINE = os.getenv("DB_ENGINE")
 
-if (DB_ENGINE == 'postgres'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'benchmarkdb',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'benchmarkdb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
-elif (DB_ENGINE == 'mysql'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'benchmarkdb',
-            'USER': 'user',
-            'HOST': 'localhost',
-            'PASSWORD': 'password',
-            'PORT': '3306',
-        },
-    }
+}
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'benchmarkdb',
+#        'USER': 'root',
+#        'PASSWORD': 'password',
+#        'HOST': 'localhost',
+#        'PORT': '3306',
+#    },
+#}
 
 
 
