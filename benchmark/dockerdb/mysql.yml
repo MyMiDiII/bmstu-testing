@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=benchmarkdb
+      - MYSQL_USER=user
+      - DB_ENGINE=mysql
