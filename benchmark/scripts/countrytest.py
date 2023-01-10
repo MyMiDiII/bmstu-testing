@@ -34,9 +34,12 @@ def test_delete():
 
     return {"name" : "delete", "time" : delta_t}
 
+
+# сюда две функции
     
 def test_country():
     insert_res = test_insert()
     delete_res = test_delete()
+    # сюда вызовы
 
     return [insert_res, delete_res]

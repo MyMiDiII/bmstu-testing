@@ -11,12 +11,15 @@ migrate() {
     done
 }
 
+RUNS_NUM=2
+export RUNS_NUM
+
 for DATABASE in $DATABASES
 do
   echo "$DATABASE"
   export DATABASE
   COMPOSE_FILE="dockerdb/$DATABASE.yml"
-  for I in $(seq 1 1)
+  for I in $(seq 1 $RUNS_NUM)
   do
     export I
     echo "Run $I"
@@ -27,3 +30,5 @@ do
     sleep 1
   done
 done
+
+python3 manage.py runscript graph
