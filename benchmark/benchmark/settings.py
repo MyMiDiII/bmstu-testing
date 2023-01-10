@@ -79,7 +79,6 @@ WSGI_APPLICATION = 'benchmark.wsgi.application'
 DB_ENGINE = os.getenv("DATABASE")
 
 if DB_ENGINE == "postgres":
-    print(DB_ENGINE)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -91,7 +90,6 @@ if DB_ENGINE == "postgres":
         }
     }
 elif DB_ENGINE == "mysql":
-    print(DB_ENGINE)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -103,7 +101,6 @@ elif DB_ENGINE == "mysql":
         },
     }
 else:
-    print(DB_ENGINE)
     print("WRONG DATABASE")
     exit(1)
 
