@@ -16,14 +16,15 @@ PLATFORM_DATA =      "./data/latform_data.csv"
 WEBHOSTING_DATA =    "./data/webhosting_data.csv"
 FAV_SERVS_DATA =     "./data/fav_servs_data.csv"
 USER_DATA =          "./data/user_data.csv"
-COUNTRY_DATA =       "./data/country_data.csv"
+#COUNTRY_DATA =       "./data/country_data.csv"
+COUNTRY_DATA =       "../../benchmark/data/country_data.csv"
 
 MAX_SERVERS = 100
 MAX_PLAYERS = 100
 MAX_WEBHOSTINGS = 10
 MAX_PLATFORMS = 10
 MAX_USERS = 100
-MAX_COUNTRIES = 30
+MAX_COUNTRIES = 1000
 
 games = [
     "Minecraft", "Counter-Strike", "Dota2", "Call Of Duty", 
@@ -189,7 +190,7 @@ def generateCountryData():
     faker = Faker()
 
     for _ in range(0, MAX_COUNTRIES):
-        countryName = faker.unique.country()
+        countryName = faker.country()
         overallPlayers = randint(1, 15) * 100
         levelOfInterest = randint(1, 10)
 
@@ -205,12 +206,12 @@ def main():
     # generatePlayerData()
     # generateServerData()
     # generateServerPlayerData()
-    # generateCountryData()
+    generateCountryData()
     # generateUserData()
     # generateFavoriteServersData()
 
-    db = DataBase()
-    db.copy_data()
+    #db = DataBase()
+    #db.copy_data()
 
 
 
