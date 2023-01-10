@@ -3,9 +3,6 @@
 # запускаем контейнер
 sudo docker-compose -f dockerdb/mysql.yml up -d
 
-# чтобы контейнер успел инициализироваться
-#sleep 5
-
 # проливаем миграции
 echo "Waiting for migrations..."
 exit_code=1

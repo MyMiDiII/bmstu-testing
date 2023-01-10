@@ -32,13 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'servering.apps.ServeringConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'servering.apps.ServeringConfig',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -76,27 +78,27 @@ WSGI_APPLICATION = 'benchmark.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 # DB_ENGINE = os.getenv("DB_ENGINE")
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'benchmarkdb',
-#        'USER': 'postgres',
-#        'PASSWORD': 'postgres',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'benchmarkdb',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '3307',
-    },
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'benchmarkdb',
+#        'USER': 'root',
+#        'PASSWORD': 'root',
+#        'HOST': '127.0.0.1',
+#        'PORT': '3307',
+#    },
+#}
 
 
 # Password validation
