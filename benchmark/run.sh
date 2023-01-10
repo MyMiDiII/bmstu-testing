@@ -16,14 +16,14 @@ do
   echo "$DATABASE"
   export DATABASE
   COMPOSE_FILE="dockerdb/$DATABASE.yml"
-  for I in $(seq 1 5)
+  for I in $(seq 1 1)
   do
     export I
     echo "Run $I"
     sudo docker-compose -f $COMPOSE_FILE up -d 
     migrate
     python3 manage.py runscript test
-    sudo docker-compose -f $COMPOSE_FILE down
+    sudo docker-compose -f $COMPOSE_FILE down -v
     sleep 1
   done
 done
