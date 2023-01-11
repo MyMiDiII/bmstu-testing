@@ -1,0 +1,130 @@
+﻿using AutoMapper;
+using ServerING.ModelsBL;
+using Microsoft.EntityFrameworkCore;
+using ServerING.Interfaces;
+using ServerING.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ServerING.Repository {
+    public class ServerRepository : IServerRepository {
+
+        ///
+        private readonly IMapper mapper;
+        private readonly AppDBContent appDBContent;
+
+        public ServerRepository(AppDBContent appDBContent, IMapper mapper) {
+            this.appDBContent = appDBContent;
+            this.mapper = mapper;
+        }
+        ///
+
+        public Server Add(Server server) {
+            try {
+                var addedServer = appDBContent.Server.Add(server);
+                appDBContent.SaveChanges();
+
+                return GetByID(server.Id);
+            }
+            catch (Exception ex) {
+                Console.Write(ex.Message);
+                throw new Exception("Server Add Error");
+            }
+        }
+
+        public Server Update(Server server) {
+            try {
+                var curServer = appDBContent.Server.FirstOrDefault(x => x.Id == server.Id);
+                /*appDBContent.Server.Update(curServer);*/
+                appDBContent.Entry(curServer).CurrentValues.SetValues(server);
+                appDBContent.SaveChanges();
+
+                return GetByID(server.Id);
+            }
+            catch (Exception ex) {
+                Console.Write(ex.Message);
+                throw new Exception("Server Update Error");
+            }
+        }
+
+        public Server Delete(int id) {
+            try {
+                Server server = appDBContent.Server.Find(id);
+
+                if (server == null) {
+                    return null;
+                }
+                else {
+                    appDBContent.Server.Remove(server);
+                    appDBContent.SaveChanges();
+
+                    return server;
+                }
+            }
+            catch (Exception ex) {
+                Console.Write(ex.Message);
+                throw new Exception("Server Delete Error");
+            }
+        }
+
+        public IEnumerable<Server> GetAll() {
+            return appDBContent
+                .Server
+                .Include(s => s.Country)
+                .Include(s => s.Platform)
+                .Include(s => s.Hosting)
+                .Include(s => s.Owner)
+                .ToList();
+        }
+
+        public Server GetByID(int id) {
+            return appDBContent
+                .Server
+                .Include(s => s.Country)
+                .Include(s => s.Platform)
+                .Include(s => s.Hosting)
+                .Include(s => s.Owner)
+                .FirstOrDefault(s => s.Id == id);
+        }
+
+        public Server GetByIP(string ip) {
+            return appDBContent
+                .Server
+                .Include(s => s.Country)
+                .Include(s => s.Platform)
+                .Include(s => s.Hosting)
+                .Include(s => s.Owner)
+                .FirstOrDefault(s => s.Ip == ip);
+        }
+
+        public Server GetByName(string name) {
+            return appDBContent
+                .Server
+                .Include(s => s.Country)
+                .Include(s => s.Platform)
+                .Include(s => s.Hosting)
+                .Include(s => s.Owner)
+                .FirstOrDefault(s => s.Name == name);
+        }
+
+        public IEnumerable<Player> GetPlayersByServerID(int id) {
+            Server server = appDBContent
+                .Server
+                .Include(s => s.Country)
+                .Include(s => s.Platform)
+                .Include(s => s.Hosting)
+                .Include(s => s.Owner)
+                .FirstOrDefault(s => s.Id == id);
+
+            if (server != null) {
+                var playersOnServerIds = appDBContent.ServerPlayer.Where(x => x.ServerID == id).Select(x => x.PlayerID).ToList();
+                IEnumerable<Player> players = appDBContent.Player.Where(x => playersOnServerIds.Contains(x.Id)).ToList();
+
+                return players;
+            }
+
+            return null;
+        }
+    }
+}
