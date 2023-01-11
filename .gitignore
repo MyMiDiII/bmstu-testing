@@ -10,9 +10,15 @@
 *bld/
 *[Bb]in/
 *[Oo]bj/
-*[Ll]og/
-*[Ll]ogs/
 
 # My
 *.DS_Store
 *test/projects/
+
+!*test/projects/.gitkeep
+
+# Python
+*__pycache__/
+
+## Wireshark
+*.pcapng

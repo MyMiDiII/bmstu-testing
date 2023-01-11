@@ -28,7 +28,7 @@ namespace ServerING {
         }
 
         // This method gets called by the runtime
-        public void ConfigureServices(IServiceCollection services) {
+        public virtual void ConfigureServices(IServiceCollection services) {
 
             // Connect to DB
             var provider = _configuration["Database"];
@@ -92,7 +92,7 @@ namespace ServerING {
         }
 
         // This method gets called by the runtime
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory) {
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory) {
             if (env.IsDevelopment()) {
                 // app.UseSwagger();
                 app.UseSwagger(c => {
