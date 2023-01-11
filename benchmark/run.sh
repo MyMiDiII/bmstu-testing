@@ -1,4 +1,10 @@
+# Some beauty
+SEPARATING_LINE_DB="====================="
+SEPARATING_LINE="---------------------"
+
+
 DATABASES="postgres mysql"
+export DATABASES
 
 migrate() {
     echo "Waiting for migrations..."
@@ -11,21 +17,33 @@ migrate() {
     done
 }
 
-RUNS_NUM=2
+RUNS_NUM=5
 export RUNS_NUM
 
 for DATABASE in $DATABASES
 do
-  echo "$DATABASE"
+  echo "$SEPARATING_LINE_DB" 
+  echo "Database: $DATABASE"
+  echo "$SEPARATING_LINE_DB"
+
   export DATABASE
   COMPOSE_FILE="dockerdb/$DATABASE.yml"
+
   for I in $(seq 1 $RUNS_NUM)
   do
     export I
-    echo "Run $I"
+
+    echo "$SEPARATING_LINE"
+    echo "Run: $I"
+    echo "$SEPARATING_LINE"
+
     sudo docker-compose -f $COMPOSE_FILE up -d 
     migrate
+
+    echo "$SEPARATING_LINE"
     python3 manage.py runscript test
+    echo "$SEPARATING_LINE"
+    
     sudo docker-compose -f $COMPOSE_FILE down -v
     sleep 1
   done

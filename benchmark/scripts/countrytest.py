@@ -4,6 +4,8 @@ import time
 from servering.models import Country
 
 def test_insert():
+    print("Test: INSERT")
+
     delta_t = 0
     with open("./data/country_data.csv", "r") as file:
         strCountries = csv.reader(file, delimiter=';')
@@ -17,12 +19,35 @@ def test_insert():
         Country.objects.bulk_create(countries)
         delta_t = time.time() - start_time
 
-        print(Country.objects.count())
-
     return {"name" : "insert", "time" : delta_t}
 
 
+def test_update():
+    print("Test: UPDATE")
+    delta_t = 0
+
+    start_time = time.time()
+    for i in range(1, 1001):
+        Country.objects.filter(id=i).update(overall_players=i)
+    delta_t = time.time() - start_time
+
+    return {"name" : "update", "time" : delta_t}
+
+
+def test_get():
+    print("Test: GET")
+    delta_t = 0
+
+    start_time = time.time()
+    for i in range(1, 1001):
+        Country.objects.get(id=i)
+    delta_t = time.time() - start_time
+
+    return {"name" : "get", "time" : delta_t}
+
+
 def test_delete():
+    print("Test: DELETE")
     delta_t = 0
 
     start_time = time.time()
@@ -30,16 +55,13 @@ def test_delete():
         Country.objects.filter(id=i).delete()
     delta_t = time.time() - start_time
 
-    print(Country.objects.count())
-
     return {"name" : "delete", "time" : delta_t}
 
-
-# сюда две функции
     
 def test_country():
     insert_res = test_insert()
+    update_res = test_update()
+    get_res = test_get()
     delete_res = test_delete()
-    # сюда вызовы
 
-    return [insert_res, delete_res]
+    return [insert_res, update_res, get_res, delete_res]
