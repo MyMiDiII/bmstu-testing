@@ -32,13 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'servering.apps.ServeringConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'servering.apps.ServeringConfig',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -74,9 +76,9 @@ WSGI_APPLICATION = 'benchmark.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-DB_ENGINE = os.getenv("DB_ENGINE")
+DB_ENGINE = os.getenv("DATABASE")
 
-if (DB_ENGINE == 'postgres'):
+if DB_ENGINE == "postgres":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -87,18 +89,20 @@ if (DB_ENGINE == 'postgres'):
             'PORT': '5432',
         }
     }
-elif (DB_ENGINE == 'mysql'):
+elif DB_ENGINE == "mysql":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'benchmarkdb',
-            'USER': 'user',
-            'HOST': 'localhost',
-            'PASSWORD': 'password',
-            'PORT': '3306',
+            'USER': 'root',
+            'PASSWORD': 'root',
+            'HOST': '127.0.0.1',
+            'PORT': '3307',
         },
     }
-
+else:
+    print("WRONG DATABASE")
+    exit(1)
 
 
 # Password validation

@@ -1,20 +1,52 @@
-#!/bin/bash
+# Some beauty
+SEPARATING_LINE_DB="====================="
+SEPARATING_LINE="---------------------"
 
-# запускаем контейнер
-# sudo docker-compose -f dockerdb/postgres.yml up -d
-docker-compose -f dockerdb/mysql.yml up -d
 
-# чтобы контейнер успел инициализироваться
-sleep 1.5
+DATABASES="postgres mysql"
+export DATABASES
 
-# проливаем миграции
-python3 manage.py migrate
+migrate() {
+    echo "Waiting for migrations..."
+    exit_code=1
+    while [[ $exit_code -ne 0 ]]
+    do
+        python3 manage.py migrate 2> /dev/null
+        exit_code=$?
+        sleep 1
+    done
+}
 
-# здесь должен быть сбор статитики
-# пока просто получение списка стран
-# psql -h localhost -U postgres -d benchmarkdb -c "select * from country"
-# mysql -h 127.0.0.1 -u user -password=password database "select * from country"
+RUNS_NUM=5
+export RUNS_NUM
 
-# удаляем конейнер
-# sudo docker-compose -f dockerdb/postgres.yml down
-docker-compose -f dockerdb/mysql.yml down
+for DATABASE in $DATABASES
+do
+  echo "$SEPARATING_LINE_DB" 
+  echo "Database: $DATABASE"
+  echo "$SEPARATING_LINE_DB"
+
+  export DATABASE
+  COMPOSE_FILE="dockerdb/$DATABASE.yml"
+
+  for I in $(seq 1 $RUNS_NUM)
+  do
+    export I
+
+    echo "$SEPARATING_LINE"
+    echo "Run: $I"
+    echo "$SEPARATING_LINE"
+
+    sudo docker-compose -f $COMPOSE_FILE up -d 
+    migrate
+
+    echo "$SEPARATING_LINE"
+    python3 manage.py runscript test
+    echo "$SEPARATING_LINE"
+    
+    sudo docker-compose -f $COMPOSE_FILE down -v
+    sleep 1
+  done
+done
+
+python3 manage.py runscript graph
