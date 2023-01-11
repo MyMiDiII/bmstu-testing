@@ -203,7 +203,7 @@ namespace UnitBL
                                     _serversBL, filter, null, 2, 2);
 
             //Assert
-            Assert.Equal(1, sortedServers.Count());
+            Assert.Single(sortedServers);
             Assert.Collection(sortedServers, item => Assert.Equal("Server13", item.Name));
         }
 
