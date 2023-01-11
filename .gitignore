@@ -17,5 +17,8 @@
 
 !*test/projects/.gitkeep
 
+# Python
+*__pycache__/
+
 ## Wireshark
 *.pcapng
